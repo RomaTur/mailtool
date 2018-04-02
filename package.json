@@ -1,0 +1,64 @@
+{
+  "name": "electron-easy-start",
+  "version": "1.0.0",
+  "description": "Electron Starter Kit",
+  "main": "electron_process.js",
+  "homepage": "./",
+  "scripts": {
+    "start": "npm-run-all -p watch-css start-js",
+    "electron-dev": "ELECTRON_START_URL=http://localhost:3000 electron .",
+    "test": "react-scripts-ts test --env=jsdom",
+    "build-web": "npm-run-all build-css build-js",
+    "build-desktop": "npm-run-all build-web gulp dist",
+    "build-css": "node-sass-chokidar src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "start-js": "react-scripts-ts start",
+    "build-js": "react-scripts-ts build",
+    "electron": "electron ./build",
+    "dist": "build",
+    "gulp": "gulp build",
+    "start-electron": "npm-run-all -p start electron-dev"
+  },
+  "build": {
+    "appId": "electroneasystart",
+    "files": [
+      {
+        "from": "./build/",
+        "to": "./",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "linux": {
+      "target": [
+        "AppImage"
+      ]
+    }
+  },
+  "author": "Roman Turusov <mr.romatur@gmail.com>",
+  "devDependencies": {
+    "@types/jest": "^22.2.2",
+    "@types/node": "^9.6.0",
+    "@types/react": "^16.0.41",
+    "@types/react-dom": "^16.0.4",
+    "electron": "^1.8.2",
+    "electron-builder": "^20.8.1",
+    "electron-reload": "^1.2.2",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "gulp": "^3.9.1",
+    "gulp-cli": "^2.0.1",
+    "node-sass-chokidar": "^1.2.2",
+    "npm-run-all": "^4.1.2",
+    "react-scripts-ts": "2.14.0",
+    "typescript": "^2.7.2"
+  },
+  "dependencies": {
+    "javascript-blowfish": "^1.0.4",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-particles-js": "^2.1.2",
+    "sha256": "^0.2.0"
+  }
+}
