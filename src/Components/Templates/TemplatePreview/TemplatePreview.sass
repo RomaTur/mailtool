@@ -2,7 +2,6 @@ $color-black: #000000
 
 .template
   &__preview
-    // border: 1px solid fade-in(lighten($color-black, 10%), 10%)
     border: 1px solid rgba(0,0,0,0.1)
     padding: 10px 20px
     display: flex
@@ -11,6 +10,7 @@ $color-black: #000000
     margin: 10px 0
     cursor: pointer
     max-width: 400px
+    transition: 0.2s
     &:hover
       box-shadow: 0 1px 5px 0px rgba(0,0,0,0.4)
     &:active

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 import TemplatePreview from './TemplatePreview/TemplatePreview';
 
 let templateDesc = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
@@ -35,22 +34,14 @@ class Templates extends React.Component<{}, TemplatesState> {
   render() {
 
     const templatesPreviewArr = [];
-    const linkParams = {
-      pathname: './template',
-      state: {
-        templates: this.state.templates
-      }
-    };
 
     for (let i = 0; i < this.state.templates.length; i++) {
       templatesPreviewArr.push(
-        <Link key={i} to={linkParams} className='template__preview-link'>
         <TemplatePreview
           key={i}
           title={this.state.templates[i].title}
           desc={this.state.templates[i].description}
-        />
-        </Link>);
+        />);
     }
 
     return (

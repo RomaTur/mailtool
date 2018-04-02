@@ -1,3 +1,35 @@
-.Login
+$color-theme: #B8D
+$color-white: #ffffff
+.login
   display: flex
   flex-direction: column
+  border: 1px solid rgba(0,0,0,0.1)
+  padding: 10px 20px
+  box-shadow: 0 2px 10px 0px rgba(0,0,0,0.4) 
+  border-radius: 10px
+  &__input
+    border-radius: 5px
+    margin-bottom: 10px
+    border: 1px solid rgba(0,0,0,0.2)
+    padding: 10px 10px
+    font-size: 1.2rem
+    font-family: monospace
+    transition: 0.3s
+    &:focus
+      outline: none
+      border: 1px solid $color-theme
+    &:last-child
+      margin-bottom: 0
+    &--btn
+      cursor: pointer
+      border-radius: 5px
+      background-color: $color-theme
+      width: 100%
+      border: none
+      color: $color-white
+      font-family: monospace
+      &:hover
+        background-color: darken($color-theme, 5%)
+      &:active
+        background-color: darken($color-theme, 10%)
+        border: none
