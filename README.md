@@ -1,7 +1,5 @@
 # mailtool
 
-![electron-easy-start](./electron-easy-start.png)
-
 - [electron-easy-start](#electron-easy-start)
     - [Install](#install)
     - [Develop](#develop)

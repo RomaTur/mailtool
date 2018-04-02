@@ -11,6 +11,12 @@
     box-shadow: 0 1px 5px 0px rgba(0, 0, 0, 0.4); }
   .template__preview:active {
     box-shadow: 0 1px 1px 0px rgba(0, 0, 0, 0.4); }
+  .template__preview-link {
+    text-decoration: none;
+    color: #000000; }
+    .template__preview-link:focus, .template__preview-link:hover, .template__preview-link:visited, .template__preview-link:link, .template__preview-link:active {
+      text-decoration: none;
+      color: #000000; }
   .template__preview-img {
     width: 100px;
     height: 100px;

@@ -22,14 +22,9 @@
         "jsx-no-lambda": false,
         "jsx-no-multiline-js": false,
         "jsx-no-bind": false,
+        "jsx-boolean-value": false,
         "label-position": true,
         "max-line-length": [ true, 120 ],
-        "member-ordering": [
-            true,
-            "public-before-private",
-            "static-before-instance",
-            "variables-before-functions"
-        ],
         "no-arg": true,
         "no-bitwise": true,
         "no-consecutive-blank-lines": true,
