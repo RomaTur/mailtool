@@ -1,5 +1,96 @@
 .template {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%; }
+
+.template__back {
+  position: absolute;
+  top: 10px;
+  left: 40px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #000000; }
+  .template__back:focus, .template__back:hover, .template__back:visited, .template__back:link, .template__back:active {
+    text-decoration: none;
+    color: #000000; }
+  .template__back:hover > .template__back-arrow {
+    margin-right: 15px;
+    margin-left: 5px; }
+  .template__back-arrow {
+    transform: rotate(90deg);
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    transition: 0.2s; }
+  .template__back-text {
+    font-family: monospace;
+    font-size: 1.2rem; }
+
+.template__wrapper {
   border: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 10px 20px;
+  padding: 30px 30px;
   box-shadow: 0 2px 10px 0px rgba(0, 0, 0, 0.4);
-  border-radius: 10px; }
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column; }
+
+.template__title {
+  align-self: center;
+  margin: 0;
+  font-family: monospace;
+  font-size: 18px;
+  margin-bottom: 20px; }
+
+.template__content {
+  display: flex; }
+
+.template__form {
+  display: flex;
+  flex-direction: column; }
+
+.form__input {
+  font-family: monospace;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #AAA; }
+  .form__input:focus {
+    border: 1px solid #9CE; }
+  .form__input:last-child {
+    margin-bottom: 0; }
+  .form__input:first-child {
+    margin-top: 10px; }
+
+.template__preview-btn {
+  width: 90px;
+  height: 110px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 20px 10px;
+  box-shadow: 0 2px 10px 0px rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  transition: 0.2s;
+  margin-right: 20px; }
+  .template__preview-btn:hover {
+    box-shadow: 0 1px 5px 0px rgba(0, 0, 0, 0.4); }
+
+.template__preview-block {
+  background-color: #DDD;
+  width: 100%;
+  height: 6px;
+  margin-bottom: 7px;
+  border-radius: 3px; }
+  .template__preview-block--one {
+    width: 50%;
+    margin-bottom: 15px; }
+  .template__preview-block--two {
+    width: 70%; }
+  .template__preview-block--three {
+    width: 40%; }
+  .template__preview-block--four {
+    width: 80%; }
