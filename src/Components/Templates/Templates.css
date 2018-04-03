@@ -1,0 +1,32 @@
+.templates {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden; }
+  .templates__back {
+    position: absolute;
+    top: 10px;
+    left: 40px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #000; }
+    .templates__back:focus, .templates__back:hover, .templates__back:visited, .templates__back:link, .templates__back:active {
+      text-decoration: none;
+      color: #000; }
+    .templates__back:hover > .templates__back-arrow {
+      margin-right: 15px;
+      margin-left: 5px; }
+    .templates__back-arrow {
+      transform: rotate(90deg);
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+      transition: 0.2s; }
+    .templates__back-text {
+      font-family: monospace;
+      font-size: 1.2rem; }

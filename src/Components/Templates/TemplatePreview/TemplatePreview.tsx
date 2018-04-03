@@ -6,6 +6,7 @@ const emailImg = require('./emailImg.jpg');
 interface TemplateProps {
   title: string;
   desc: string;
+  inputs: any;
 }
 
 class TemplatePreview extends React.Component<TemplateProps, {}> {
@@ -14,7 +15,8 @@ class TemplatePreview extends React.Component<TemplateProps, {}> {
       pathname: './template',
       state: {
         title: this.props.title,
-        desc: this.props.desc
+        desc: this.props.desc,
+        inputs: this.props.inputs || ['email']
       }
     };
 

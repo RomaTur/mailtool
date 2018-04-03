@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import * as Modal from 'react-modal';
+import EmailPreview from './EmailPreview/EmailPreview';
 import './Template.css';
 const arrow = require('./arrow.svg');
 
@@ -17,6 +18,7 @@ const modalStyles = {
 
 interface TemplateProps {
   location: any;
+  inputs: any;
 }
 
 interface TemplateState {
@@ -32,7 +34,8 @@ class Template extends React.Component<TemplateProps, TemplateState> {
     this.state = {
       params: this.props.location.state || {
           title: 'Empty title',
-          desc: 'Empty desc'
+          desc: 'Empty desc',
+          inputs: ['email']
       },
       templateHtml: '<div>templateHtml</div>',
       modalIsOpen: false,
@@ -53,6 +56,9 @@ class Template extends React.Component<TemplateProps, TemplateState> {
  
   afterOpenModal() {
     console.log('modal opened');
+    console.log(document.getElementById('modal__email'));
+    // const modalWrapper = document.getElementById('modal__email');
+    // modalWrapper.innerHTML(this.state.templateHtml);
   }
  
   closeModal() {
@@ -60,8 +66,8 @@ class Template extends React.Component<TemplateProps, TemplateState> {
   }
 
   changeInput(e: any) {
-    const attr = e.target.attributes.getNamedItem('data-key').value;
-    const attrVal = e.target.value;
+    const attr = e.target.attributes.getNamedItem('data-key').value || 'null';
+    const attrVal = e.target.value || 'null';
     this.setState({
       inputs: Object.assign(this.state.inputs, {
           [ attr ]: attrVal
@@ -70,6 +76,20 @@ class Template extends React.Component<TemplateProps, TemplateState> {
   }
 
   render() {
+    const propInputs = [];
+
+    for (let i = 0; i < this.state.params.inputs.length; i++) {
+      propInputs.push(
+        <input
+          type={this.state.params.inputs[i].type}
+          data-key={this.state.params.inputs[i].key}
+          className='form__input'
+          placeholder={this.state.params.inputs[i].placeholder}
+          required
+          onChange={this.changeInput}
+        />
+      );
+    }
 
     return (
       <div className='template'>
@@ -90,15 +110,18 @@ class Template extends React.Component<TemplateProps, TemplateState> {
                 isOpen={this.state.modalIsOpen}
                 onAfterOpen={this.afterOpenModal}
                 onRequestClose={this.closeModal}
-                contentLabel='Example Modal'
+                contentLabel='Email modal'
                 style={modalStyles}
             >
               <h2>Hello</h2>
               <button onClick={this.closeModal}>close</button>
-              <div>I am a modal</div>
+              <div id='modal__email'>I am a modal</div>
+              <EmailPreview
+                name={this.state.inputs.name}
+              />
             </Modal>
             <form className='template__form'>
-              <input
+              {/* <input
                 type='text'
                 data-key='name'
                 className='form__input'
@@ -113,8 +136,9 @@ class Template extends React.Component<TemplateProps, TemplateState> {
                 placeholder='Email'
                 required
                 onChange={this.changeInput}
-              />
-              <input type='submit' className='form__input' value='Отправить'/>
+              /> */}
+              {propInputs}
+              <input type='submit' className='form__input form__input--submit' value='Отправить'/>
             </form>
           </div>
         </div>

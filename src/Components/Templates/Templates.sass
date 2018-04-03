@@ -1,2 +1,35 @@
+$color-black: #000
+
 .templates
   // border: 1px solid #000000
+  position: relative
+  width: 100%
+  height: 100%
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-direction: column
+  overflow: hidden
+  &__back
+    position: absolute
+    top: 10px
+    left: 40px
+    display: flex
+    align-items: center
+    text-decoration: none
+    color: $color-black
+    &:focus, &:hover, &:visited, &:link, &:active
+      text-decoration: none
+      color: $color-black
+    &:hover>&-arrow
+      margin-right: 15px
+      margin-left: 5px
+    &-arrow
+      transform: rotate(90deg)
+      width: 30px
+      height: 30px
+      margin-right: 10px
+      transition: 0.2s
+    &-text
+      font-family: monospace
+      font-size: 1.2rem
