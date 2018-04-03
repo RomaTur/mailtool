@@ -8,7 +8,7 @@ class EmailPreview extends React.Component<EmailPreviewProps, {}> {
   render() {
     return (
       <div className='email__preview'>
-        {this.props.name}
+        {/* {this.props.name} */}
       </div>
     );
   }

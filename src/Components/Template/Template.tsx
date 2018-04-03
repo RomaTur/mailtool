@@ -35,12 +35,11 @@ class Template extends React.Component<TemplateProps, TemplateState> {
       params: this.props.location.state || {
           title: 'Empty title',
           desc: 'Empty desc',
-          inputs: ['email']
+          inputs: []
       },
-      templateHtml: '<div>templateHtml</div>',
+      templateHtml: `<div>templateHtml</div>`,
       modalIsOpen: false,
       inputs: {
-        name: '',
         email: ''
       }
     };
@@ -57,8 +56,10 @@ class Template extends React.Component<TemplateProps, TemplateState> {
   afterOpenModal() {
     console.log('modal opened');
     console.log(document.getElementById('modal__email'));
-    // const modalWrapper = document.getElementById('modal__email');
-    // modalWrapper.innerHTML(this.state.templateHtml);
+    // document.getElementById('modal__email').innerHTML = this.state.templateHtml || '';
+    const modalWrapper = document.getElementById('modal__email') || {innerHTML: ''};
+    console.log(modalWrapper);
+    modalWrapper.innerHTML = this.state.templateHtml;
   }
  
   closeModal() {
@@ -71,24 +72,26 @@ class Template extends React.Component<TemplateProps, TemplateState> {
     this.setState({
       inputs: Object.assign(this.state.inputs, {
           [ attr ]: attrVal
-        })
+      })
     });
   }
 
   render() {
     const propInputs = [];
-
-    for (let i = 0; i < this.state.params.inputs.length; i++) {
-      propInputs.push(
-        <input
-          type={this.state.params.inputs[i].type}
-          data-key={this.state.params.inputs[i].key}
-          className='form__input'
-          placeholder={this.state.params.inputs[i].placeholder}
-          required
-          onChange={this.changeInput}
-        />
-      );
+    console.log(this.state.params.inputs);
+    if (this.state.params.inputs.length !== 0) {
+      for (let i = 0; i < this.state.params.inputs.length; i++) {
+        propInputs.push(
+          <input
+            type={this.state.params.inputs[i].type}
+            data-key={this.state.params.inputs[i].key}
+            className='form__input'
+            placeholder={this.state.params.inputs[i].placeholder}
+            required
+            onChange={this.changeInput}
+          />
+        );
+      }
     }
 
     return (
@@ -121,22 +124,6 @@ class Template extends React.Component<TemplateProps, TemplateState> {
               />
             </Modal>
             <form className='template__form'>
-              {/* <input
-                type='text'
-                data-key='name'
-                className='form__input'
-                placeholder='Имя'
-                required
-                onChange={this.changeInput}
-              />
-              <input
-                type='email'
-                data-key='email'
-                className='form__input'
-                placeholder='Email'
-                required
-                onChange={this.changeInput}
-              /> */}
               {propInputs}
               <input type='submit' className='form__input form__input--submit' value='Отправить'/>
             </form>
