@@ -110,6 +110,9 @@
   border-radius: 15px !important;
   display: flex;
   flex-direction: column; }
+  @media (min-width: 769px) {
+    .ReactModal__Content--after-open {
+      width: 600px; } }
 
 .template__preview-close {
   padding: 13px 0 18px 0;
