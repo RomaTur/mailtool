@@ -4,6 +4,8 @@ import * as Modal from 'react-modal';
 import EmailPreview from './EmailPreview/EmailPreview';
 import './Template.css';
 const arrow = require('./arrow.svg');
+const avatarImg = require('./avatar.svg');
+const subjectImg = require('./subject.svg');
 
 const modalStyles = {
   content : {
@@ -154,7 +156,18 @@ class Template extends React.Component<TemplateProps, TemplateState> {
                 onRequestClose={this.closeModal}
                 contentLabel='Email modal'
                 style={modalStyles}
-            >
+            > 
+              <div className='template__preview-header'>
+                <div className='template__preview-person'>
+                  <img src={avatarImg} alt='user' className='template__preview-icon'/>
+                  <h3 className='template__preview-value'>{this.state.inputs.email}</h3>
+                </div>
+                <div className='template__preview-border'/>
+                <div className='template__preview-subject'>
+                  <img src={subjectImg} alt='subject' className='template__preview-icon'/>
+                  <h3 className='template__preview-value'>{this.state.inputs.subject}</h3>
+                </div>
+              </div>
               <EmailPreview
                 html={this.state.previewHtml}
               />

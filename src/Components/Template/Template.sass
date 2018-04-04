@@ -88,22 +88,6 @@ $color-close: #F77
     margin-right: 20px
     &:hover
       box-shadow: 0 1px 5px 0px rgba(0,0,0,0.4)
-  &-close
-    // height: 50px
-    // line-height: 50px
-    padding: 15px 0 15px 0
-    font-family: monospace
-    font-size: 1.4rem
-    color: $color-white
-    border-bottom-left-radius: 10px
-    border-bottom-right-radius: 10px
-    outline: none
-    border: none
-    background-color: $color-close
-    cursor: pointer
-    transition: 0.3s
-    &:hover
-      background-color: darken($color-close, 5%)
   &-block
     background-color: #DDD
     width: 100%
@@ -130,3 +114,57 @@ $color-close: #F77
   border-radius: 15px !important
   display: flex
   flex-direction: column
+
+.template__preview
+  &-close
+    // height: 50px
+    // line-height: 50px
+    padding: 13px 0 18px 0
+    font-family: monospace
+    font-size: 1.4rem
+    color: $color-white
+    border-bottom-left-radius: 10px
+    border-bottom-right-radius: 10px
+    outline: none
+    border: none
+    background-color: $color-close
+    cursor: pointer
+    transition: 0.3s
+    &:hover
+      background-color: darken($color-close, 5%)
+  &-header
+    // display: flex
+    // flex-direction: column
+    // justify-content: space-around
+    // height: 120px
+  &-person, &-subject
+    display: flex
+    padding-bottom: 10px
+    margin-bottom: 0px 
+    justify-content: center
+    align-items: center
+    &:last-child
+      margin-bottom: 5px
+    &:first-child
+      margin-top: 10px
+  &-value
+    margin: 0
+    width: 400px
+    font-size: 1rem
+    font-family: monospace
+    font-weight: 400
+  &-icon
+    width: 40px
+    height: 40px
+    padding-right: 20px
+    margin-right: 20px
+    margin-left: 30px
+    border-right: 1px solid $color-black
+  &-subject &-icon
+    width: 45px
+    margin-left: 35px
+    padding-right: 10px
+  &-border
+    width: 500px
+    margin: 0 auto 10px auto
+    border-bottom: 1px solid lighten($color-black, 80%)
