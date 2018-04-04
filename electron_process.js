@@ -1,3 +1,4 @@
+// require('./server/bin/www');
 // Basic init
 const electron = require('electron')
 const {app, BrowserWindow} = electron

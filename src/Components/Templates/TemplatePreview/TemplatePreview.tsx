@@ -7,6 +7,7 @@ interface TemplateProps {
   title: string;
   desc: string;
   inputs: any;
+  templateHtml: string;
 }
 
 class TemplatePreview extends React.Component<TemplateProps, {}> {
@@ -16,10 +17,10 @@ class TemplatePreview extends React.Component<TemplateProps, {}> {
       state: {
         title: this.props.title,
         desc: this.props.desc,
-        inputs: this.props.inputs || ['email']
+        inputs: this.props.inputs || ['email'],
+        templateHtml: this.props.templateHtml || 'Sorry'
       }
     };
-
     return (
       <Link to={linkParams} className='template__preview-link'>
         <div className='template__preview'>

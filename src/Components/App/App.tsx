@@ -7,10 +7,6 @@ import Templates from '../Templates/Temlates';
 import Template from '../Template/Template';
 
 class App extends React.Component {
-  componentDidMount() {
-    console.log(location);
-  }
-  
   render() {
     return (
       <div className='App'>

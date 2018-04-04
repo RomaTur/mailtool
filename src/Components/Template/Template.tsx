@@ -23,9 +23,9 @@ interface TemplateProps {
 
 interface TemplateState {
   params: any;
-  templateHtml: string;
   modalIsOpen: boolean;
   inputs: any;
+  previewHtml: string;
 }
 
 class Template extends React.Component<TemplateProps, TemplateState> {
@@ -35,9 +35,10 @@ class Template extends React.Component<TemplateProps, TemplateState> {
       params: this.props.location.state || {
           title: 'Empty title',
           desc: 'Empty desc',
-          inputs: []
+          inputs: [],
+          templateHtml: '/-email-/'
       },
-      templateHtml: `<div>templateHtml</div>`,
+      previewHtml: '',
       modalIsOpen: false,
       inputs: {
         email: ''
@@ -50,16 +51,13 @@ class Template extends React.Component<TemplateProps, TemplateState> {
   }
 
   openModal() {
-    this.setState({modalIsOpen: true});
+    if (this.state.previewHtml !== '') {
+      this.setState({modalIsOpen: true});
+    }
   }
  
   afterOpenModal() {
     console.log('modal opened');
-    console.log(document.getElementById('modal__email'));
-    // document.getElementById('modal__email').innerHTML = this.state.templateHtml || '';
-    const modalWrapper = document.getElementById('modal__email') || {innerHTML: ''};
-    console.log(modalWrapper);
-    modalWrapper.innerHTML = this.state.templateHtml;
   }
  
   closeModal() {
@@ -74,15 +72,56 @@ class Template extends React.Component<TemplateProps, TemplateState> {
           [ attr ]: attrVal
       })
     });
+    this.changePreviewHtml();
+  }
+
+  changePreviewHtml() {
+    let previewHtml = this.state.params.templateHtml;
+    for (let key in this.state.inputs) {
+      if (this.state.inputs[key] !== '') {
+        previewHtml = previewHtml.replace(new RegExp(`/-${key}-/`, 'g'), this.state.inputs[key]);
+      }
+    }
+    this.setState({
+      previewHtml: previewHtml
+    });
+  }
+
+  sendEmail(e: any) {
+    e.preventDefault();
+    // if (this.state.inputs.email === '') {
+    //   return '';
+    // }
+    const sendingObj = {
+      to: this.state.inputs.email,
+      subject: this.state.inputs.subject,
+      html: this.state.previewHtml
+    };
+
+    // var data = new FormData();
+    // data.append( 'json', JSON.stringify(sendingObj) );
+    // console.log(data);
+    fetch('/maildata',
+    {
+        method: 'POST',
+        body: JSON.stringify(sendingObj),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include'
+    })
+    .then(function(res: any) {
+      return res.json();
+    });
   }
 
   render() {
     const propInputs = [];
-    console.log(this.state.params.inputs);
     if (this.state.params.inputs.length !== 0) {
       for (let i = 0; i < this.state.params.inputs.length; i++) {
         propInputs.push(
           <input
+            key={i}
             type={this.state.params.inputs[i].type}
             data-key={this.state.params.inputs[i].key}
             className='form__input'
@@ -103,7 +142,7 @@ class Template extends React.Component<TemplateProps, TemplateState> {
         <div className='template__wrapper'>
           <h3 className='template__title'>{this.state.params.title}</h3>
           <div className='template__content'>
-            <div className='template__preview-btn' onClick={this.openModal}>
+            <div className='template__preview-open' onClick={this.openModal}>
               <div className='template__preview-block template__preview-block--one'/>
               <div className='template__preview-block template__preview-block--two'/>
               <div className='template__preview-block template__preview-block--three'/>
@@ -116,14 +155,12 @@ class Template extends React.Component<TemplateProps, TemplateState> {
                 contentLabel='Email modal'
                 style={modalStyles}
             >
-              <h2>Hello</h2>
-              <button onClick={this.closeModal}>close</button>
-              <div id='modal__email'>I am a modal</div>
               <EmailPreview
-                name={this.state.inputs.name}
+                html={this.state.previewHtml}
               />
+              <button onClick={this.closeModal} className='template__preview-close'>Закрыть</button>
             </Modal>
-            <form className='template__form'>
+            <form className='template__form' onSubmit={this.sendEmail.bind(this)}>
               {propInputs}
               <input type='submit' className='form__input form__input--submit' value='Отправить'/>
             </form>

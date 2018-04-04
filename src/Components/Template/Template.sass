@@ -1,5 +1,7 @@
 $color-black: #000000
 $color-theme: #9CE
+$color-white: #FFFFFF
+$color-close: #F77
 .template
   position: relative
   display: flex
@@ -72,10 +74,10 @@ $color-theme: #9CE
       cursor: pointer
       background-color: darken($color-theme, 20%)
       border: none
-      color: #FFF
+      color: $color-white
 
 .template__preview
-  &-btn
+  &-open
     width: 90px
     height: 110px
     border: 1px solid rgba(0,0,0,0.1)
@@ -86,6 +88,22 @@ $color-theme: #9CE
     margin-right: 20px
     &:hover
       box-shadow: 0 1px 5px 0px rgba(0,0,0,0.4)
+  &-close
+    // height: 50px
+    // line-height: 50px
+    padding: 15px 0 15px 0
+    font-family: monospace
+    font-size: 1.4rem
+    color: $color-white
+    border-bottom-left-radius: 10px
+    border-bottom-right-radius: 10px
+    outline: none
+    border: none
+    background-color: $color-close
+    cursor: pointer
+    transition: 0.3s
+    &:hover
+      background-color: darken($color-close, 5%)
   &-block
     background-color: #DDD
     width: 100%
@@ -103,10 +121,12 @@ $color-theme: #9CE
     &--four
       width: 80%
 
-// .ReactModal__Content--after-open
-//   height: 400px
-//   width: 300px
-//   border: 1px solid rgba(0,0,0,0.1)
-//   padding: 20px 10px
-//   box-shadow: 0 2px 10px 0px rgba(0,0,0,0.4) 
-//   border-radius: 5px
+.ReactModal__Content--after-open
+  height: 85vh
+  width: 85vw
+  border: 1px solid rgba(0,0,0,0.1)
+  padding: 0 !important
+  box-shadow: 0 2px 10px 0px rgba(0,0,0,0.4) 
+  border-radius: 15px !important
+  display: flex
+  flex-direction: column

@@ -71,9 +71,9 @@
     cursor: pointer;
     background-color: #42a0df;
     border: none;
-    color: #FFF; }
+    color: #FFFFFF; }
 
-.template__preview-btn {
+.template__preview-open {
   width: 90px;
   height: 110px;
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -82,8 +82,23 @@
   border-radius: 5px;
   transition: 0.2s;
   margin-right: 20px; }
-  .template__preview-btn:hover {
+  .template__preview-open:hover {
     box-shadow: 0 1px 5px 0px rgba(0, 0, 0, 0.4); }
+
+.template__preview-close {
+  padding: 15px 0 15px 0;
+  font-family: monospace;
+  font-size: 1.4rem;
+  color: #FFFFFF;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  outline: none;
+  border: none;
+  background-color: #F77;
+  cursor: pointer;
+  transition: 0.3s; }
+  .template__preview-close:hover {
+    background-color: #ff5e5e; }
 
 .template__preview-block {
   background-color: #DDD;
@@ -100,3 +115,13 @@
     width: 40%; }
   .template__preview-block--four {
     width: 80%; }
+
+.ReactModal__Content--after-open {
+  height: 85vh;
+  width: 85vw;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0 !important;
+  box-shadow: 0 2px 10px 0px rgba(0, 0, 0, 0.4);
+  border-radius: 15px !important;
+  display: flex;
+  flex-direction: column; }
