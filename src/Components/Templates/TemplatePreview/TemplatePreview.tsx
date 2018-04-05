@@ -8,13 +8,13 @@ const emailImg = require('./emailImg.jpg');
 interface TemplateProps {
   title: string;
   desc: string;
-  inputs: any;
+  options: any;
   templateHtml: string;
   duration: number;
 }
 
 class TemplatePreview extends React.Component<TemplateProps, {}> {
-
+  
   private templ: HTMLDivElement;
 
   componentDidMount() {
@@ -22,23 +22,13 @@ class TemplatePreview extends React.Component<TemplateProps, {}> {
       { x: 0, opacity: '1', delay: this.props.duration / 9 });
   }
 
-  componentWillUnmount() {
-    TweenLite.fromTo(this.templ, 0.3, {y: 0, opacity: 1},
-      {y: -100, opacity: 0});
-
-  }
-
-  // animateTween() {
-
-  // }
-
   render() {
     const linkParams = {
       pathname: './template',
       state: {
         title: this.props.title,
         desc: this.props.desc,
-        inputs: this.props.inputs || ['email'],
+        inputs: this.props.options || ['email'],
         templateHtml: this.props.templateHtml || 'Sorry'
       }
     };

@@ -38,7 +38,7 @@ class Templates extends React.Component<{}, TemplatesState> {
           duration={i}
           title={this.state.templates[i].title}
           desc={this.state.templates[i].description}
-          inputs={this.state.templates[i].inputs}
+          options={this.state.templates[i].options}
           templateHtml={this.state.templates[i].templateHtml}
         />);
     }

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import * as Modal from 'react-modal';
 import EmailPreview from './EmailPreview/EmailPreview';
+import { TweenLite } from 'gsap';
 import './Template.css';
 const arrow = require('./arrow.svg');
 const avatarImg = require('./avatar.svg');
@@ -20,7 +21,7 @@ const modalStyles = {
 
 interface TemplateProps {
   location: any;
-  inputs: any;
+  options: any;
 }
 
 interface TemplateState {
@@ -50,6 +51,13 @@ class Template extends React.Component<TemplateProps, TemplateState> {
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.changeInput = this.changeInput.bind(this);
+  }
+
+  private templ: HTMLDivElement;
+
+  componentDidMount() {
+    TweenLite.fromTo(this.templ, 0.4, { x: -10, opacity: '0' }, 
+      { x: 0, opacity: '1', delay: 0.2 });
   }
 
   openModal() {
@@ -141,7 +149,7 @@ class Template extends React.Component<TemplateProps, TemplateState> {
           <img src={arrow} className='template__back-arrow'/>
           <span className='template__back-text'>Назад</span>
         </Link>
-        <div className='template__wrapper'>
+        <div className='template__wrapper' ref={(templ: any) => {this.templ = templ; }}>
           <h3 className='template__title'>{this.state.params.title}</h3>
           <div className='template__content'>
             <div className='template__preview-open' onClick={this.openModal}>
