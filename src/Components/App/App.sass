@@ -21,3 +21,16 @@ $color-black: #000000
     font-family: monospace
     font-size: 1rem
     border-top: 1px solid $color-theme
+
+.fade-enter
+  opacity: 0
+  z-index: 1
+
+.fade-out
+  opacity: 0
+  z-index: 1
+  transition: 0.2s
+
+.fade-enter.fade-enter-active
+  opacity: 1
+  transition: opacity 250ms ease-in

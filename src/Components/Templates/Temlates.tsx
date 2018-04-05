@@ -35,6 +35,7 @@ class Templates extends React.Component<{}, TemplatesState> {
       templatesPreviewArr.push(
         <TemplatePreview
           key={i}
+          duration={i}
           title={this.state.templates[i].title}
           desc={this.state.templates[i].description}
           inputs={this.state.templates[i].inputs}

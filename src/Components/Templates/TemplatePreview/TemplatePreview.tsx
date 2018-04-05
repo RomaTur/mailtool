@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+const TweenLite = require('gsap');
+
 import './TemplatePreview.css';
 const emailImg = require('./emailImg.jpg');
 
@@ -8,9 +10,28 @@ interface TemplateProps {
   desc: string;
   inputs: any;
   templateHtml: string;
+  duration: number;
 }
 
 class TemplatePreview extends React.Component<TemplateProps, {}> {
+
+  private templ: HTMLDivElement;
+
+  componentDidMount() {
+    TweenLite.fromTo(this.templ, 0.4, { x: -10, opacity: '0' }, 
+      { x: 0, opacity: '1', delay: this.props.duration / 9 });
+  }
+
+  componentWillUnmount() {
+    TweenLite.fromTo(this.templ, 0.3, {y: 0, opacity: 1},
+      {y: -100, opacity: 0});
+
+  }
+
+  // animateTween() {
+
+  // }
+
   render() {
     const linkParams = {
       pathname: './template',
@@ -23,7 +44,7 @@ class TemplatePreview extends React.Component<TemplateProps, {}> {
     };
     return (
       <Link to={linkParams} className='template__preview-link'>
-        <div className='template__preview'>
+        <div className='template__preview' ref={(templ: any) => { this.templ = templ; }}>
           <img src={emailImg} alt='preview' className='template__preview-img' />
           <div className='template__preview-text'>
             <h3 className='template__preview-title'>

@@ -6,8 +6,7 @@
   border-radius: 10px;
   margin: 10px 0;
   cursor: pointer;
-  max-width: 400px;
-  transition: 0.2s; }
+  max-width: 400px; }
   .template__preview:hover {
     box-shadow: 0 1px 5px 0px rgba(0, 0, 0, 0.4); }
   .template__preview:active {

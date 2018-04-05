@@ -19,3 +19,16 @@
     font-family: monospace;
     font-size: 1rem;
     border-top: 1px solid #9CE; }
+
+.fade-enter {
+  opacity: 0;
+  z-index: 1; }
+
+.fade-out {
+  opacity: 0;
+  z-index: 1;
+  transition: 0.2s; }
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 250ms ease-in; }
