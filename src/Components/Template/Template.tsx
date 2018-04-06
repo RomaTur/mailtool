@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import * as Modal from 'react-modal';
 import EmailPreview from './EmailPreview/EmailPreview';
+import Form from './Form/Form';
 import { TweenLite } from 'gsap';
 import './Template.css';
 const arrow = require('./arrow.svg');
@@ -38,7 +39,7 @@ class Template extends React.Component<TemplateProps, TemplateState> {
       params: this.props.location.state || {
           title: 'Empty title',
           desc: 'Empty desc',
-          inputs: [],
+          options: [],
           templateHtml: '/-email-/'
       },
       previewHtml: '',
@@ -127,15 +128,15 @@ class Template extends React.Component<TemplateProps, TemplateState> {
 
   render() {
     const propInputs = [];
-    if (this.state.params.inputs.length !== 0) {
-      for (let i = 0; i < this.state.params.inputs.length; i++) {
+    if (this.state.params.options.length !== 0) {
+      for (let i = 0; i < this.state.params.options.length; i++) {
         propInputs.push(
           <input
             key={i}
-            type={this.state.params.inputs[i].type}
-            data-key={this.state.params.inputs[i].key}
+            type={this.state.params.options[i].type}
+            data-key={this.state.params.options[i].key}
             className='form__input'
-            placeholder={this.state.params.inputs[i].placeholder}
+            placeholder={this.state.params.options[i].placeholder}
             required
             onChange={this.changeInput}
           />
@@ -181,10 +182,13 @@ class Template extends React.Component<TemplateProps, TemplateState> {
               />
               <button onClick={this.closeModal} className='template__preview-close'>Закрыть</button>
             </Modal>
-            <form className='template__form' onSubmit={this.sendEmail.bind(this)}>
+            {/* <form className='template__form' onSubmit={this.sendEmail.bind(this)}>
               {propInputs}
               <input type='submit' className='form__input form__input--submit' value='Отправить'/>
-            </form>
+            </form> */}
+            <Form
+              options={this.state.params.options}
+            />
           </div>
         </div>
       </div>

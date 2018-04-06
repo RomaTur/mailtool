@@ -1,0 +1,55 @@
+$color-black: #000000
+$color-theme: #9CE
+$color-white: #FFFFFF
+$color-close: #F77
+
+.form
+  display: flex
+  flex-direction: column
+  &__array
+    box-shadow: 0 2px 10px 0px rgba(0,0,0,0.4) 
+    border-radius: 15px !important
+    margin: 10px
+    display: flex
+    flex-direction: column
+    padding: 10px 10px
+  &__input
+    margin: 5px
+    font-size: 1rem
+    display: flex
+    justify-content: space-between
+    &-name
+      margin-right: 10px
+    &-input
+      font-size: 0.9rem
+      padding: 5px 10px
+      border-radius: 5px
+      outline: none
+      border: 1px solid #AAA
+      transition: 0.2s
+      &:focus
+        border: 1px solid $color-theme
+      &--submit
+        cursor: pointer
+        background-color: darken($color-theme, 20%)
+        border: none
+        color: $color-white
+  &__textarea
+    margin: 5px
+    transition: 0.2s
+    display: flex
+    align-content: flex-start
+    justify-content: space-between
+    font-family: monospace
+    font-size: 1rem
+    &:focus
+      border: 1px solid $color-theme
+    &-name
+      margin-right: 10px
+    &-input
+      border-radius: 5px
+      padding: 5px 10px
+      font-size: 0.9rem
+      resize: none
+      height: 50px
+      outline: none

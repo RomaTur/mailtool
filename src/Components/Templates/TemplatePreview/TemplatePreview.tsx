@@ -28,7 +28,7 @@ class TemplatePreview extends React.Component<TemplateProps, {}> {
       state: {
         title: this.props.title,
         desc: this.props.desc,
-        inputs: this.props.options || ['email'],
+        options: this.props.options || ['email'],
         templateHtml: this.props.templateHtml || 'Sorry'
       }
     };

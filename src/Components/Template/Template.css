@@ -49,30 +49,6 @@
 .template__content {
   display: flex; }
 
-.template__form {
-  display: flex;
-  flex-direction: column; }
-
-.form__input {
-  font-family: monospace;
-  font-size: 1rem;
-  margin-bottom: 20px;
-  padding: 10px 15px;
-  border-radius: 5px;
-  outline: none;
-  border: 1px solid #AAA; }
-  .form__input:focus {
-    border: 1px solid #9CE; }
-  .form__input:last-child {
-    margin-bottom: 0; }
-  .form__input:first-child {
-    margin-top: 10px; }
-  .form__input--submit {
-    cursor: pointer;
-    background-color: #42a0df;
-    border: none;
-    color: #FFFFFF; }
-
 .template__preview-open {
   width: 90px;
   height: 110px;
