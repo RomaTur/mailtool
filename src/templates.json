@@ -26,60 +26,70 @@
             {
               "type": "input",
               "name": "Название",
-              "key": "title"
+              "key": "title",
+              "value": ""
             },
             {
               "type": "textarea",
               "name": "Описание",
-              "key": "desc"
+              "key": "desc",
+              "value": ""
             },
             {
               "type": "array",
               "name": "Товар",
-              "key": "inputs",
+              "key": "products",
               "elements": [
                 {
                   "type": "input",
                   "name": "Наименование",
-                  "key": "name"
+                  "key": "product1Name",
+                  "value": ""
                 },
                 {
                   "type": "array",
                   "name": "Описание",
-                  "key": "desc",
+                  "key": "product1Desc",
                   "elements": [
                     {
                       "type": "select",
                       "name": "Опция",
-                      "key": "option",
-                      "default": "opt2",
+                      "key": "product1DescSelect",
+                      "value": "",
                       "elements": [
                         {
                           "name": "Первая опция",
-                          "key": "opt1"
+                          "key": "product1DescSelectOption1"
                         },
                         {
                           "name": "Вторая опция",
-                          "key": "opt2"
+                          "key": "product1DescSelectOption2"
+                        },
+                        {
+                          "name": "Третья опция",
+                          "key": "product1DescSelectOption3"
                         }
                       ]
                     },
                     {
                       "type": "textarea",
                       "name": "Доп",
-                      "key": "another"
+                      "key": "product1DescAnother",
+                      "value": ""
                     }
                   ]
                 },
                 {
                   "type": "input",
                   "name": "Цена",
-                  "key": "price"
+                  "key": "product1Price",
+                  "value": ""
                 },
                 {
                   "type": "input",
                   "name": "Кол-во",
-                  "key": "count"
+                  "key": "product1Count",
+                  "value": ""
                 }
               ]
             }

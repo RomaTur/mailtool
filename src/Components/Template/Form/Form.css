@@ -48,3 +48,18 @@
       resize: none;
       height: 50px;
       outline: none; }
+  .form__select {
+    margin: 5px;
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-between; }
+    .form__select-name {
+      margin-right: 10px; }
+    .form__select-input {
+      transition: 0.3s;
+      font-size: 0.9rem;
+      padding: 5px 10px;
+      border-radius: 5px;
+      outline: none;
+      border: 1px solid #AAA;
+      transition: 0.2s; }

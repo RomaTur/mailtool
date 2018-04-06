@@ -30,6 +30,7 @@ interface TemplateState {
   modalIsOpen: boolean;
   inputs: any;
   previewHtml: string;
+  obj: any;
 }
 
 class Template extends React.Component<TemplateProps, TemplateState> {
@@ -46,7 +47,8 @@ class Template extends React.Component<TemplateProps, TemplateState> {
       modalIsOpen: false,
       inputs: {
         email: ''
-      }
+      },
+      obj: {}
     };
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
@@ -59,6 +61,14 @@ class Template extends React.Component<TemplateProps, TemplateState> {
   componentDidMount() {
     TweenLite.fromTo(this.templ, 0.4, { x: -10, opacity: '0' }, 
       { x: 0, opacity: '1', delay: 0.2 });
+  }
+
+  setter(key: string, value: any) {
+    this.setState({
+      obj: Object.assign(this.state.obj, {
+        [ key ]: value
+      })
+    });
   }
 
   openModal() {
@@ -127,22 +137,22 @@ class Template extends React.Component<TemplateProps, TemplateState> {
   }
 
   render() {
-    const propInputs = [];
-    if (this.state.params.options.length !== 0) {
-      for (let i = 0; i < this.state.params.options.length; i++) {
-        propInputs.push(
-          <input
-            key={i}
-            type={this.state.params.options[i].type}
-            data-key={this.state.params.options[i].key}
-            className='form__input'
-            placeholder={this.state.params.options[i].placeholder}
-            required
-            onChange={this.changeInput}
-          />
-        );
-      }
-    }
+    // const propInputs = [];
+    // if (this.state.params.options.length !== 0) {
+    //   for (let i = 0; i < this.state.params.options.length; i++) {
+    //     propInputs.push(
+    //       <input
+    //         key={i}
+    //         type={this.state.params.options[i].type}
+    //         data-key={this.state.params.options[i].key}
+    //         className='form__input'
+    //         placeholder={this.state.params.options[i].placeholder}
+    //         required
+    //         onChange={this.changeInput}
+    //       />
+    //     );
+    //   }
+    // }
 
     return (
       <div className='template'>
@@ -182,12 +192,9 @@ class Template extends React.Component<TemplateProps, TemplateState> {
               />
               <button onClick={this.closeModal} className='template__preview-close'>Закрыть</button>
             </Modal>
-            {/* <form className='template__form' onSubmit={this.sendEmail.bind(this)}>
-              {propInputs}
-              <input type='submit' className='form__input form__input--submit' value='Отправить'/>
-            </form> */}
             <Form
               options={this.state.params.options}
+              changeFunc={this.setter.bind(this)}
             />
           </div>
         </div>

@@ -1,15 +1,36 @@
 import * as React from 'react';
 
 interface InputProps {
-  name: string;
+  changeFunc: any;
+  options: any;
 }
-
-class Input extends React.Component<InputProps, {}> {
+interface InputState {
+  value: any;
+}
+class Input extends React.Component<InputProps, InputState> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      value: ''
+    };
+  }
+  setVal(e: any) {
+    console.log(this.props.options.key);
+    this.setState({
+      value: e.target.value
+    });
+    this.props.changeFunc(this.props.options.key, e.target.value);
+  }
   render() {
     return(
       <div className='form__input'>
-        <span className='form__input-name'>{this.props.name}: </span>
-        <input placeholder='input' className='form__input-input'/>
+        <span className='form__input-name'>{this.props.options.name}: </span>
+        <input
+          placeholder='input'
+          value={this.state.value}
+          className='form__input-input'
+          onChange={this.setVal.bind(this)}
+        />
       </div>
     );
   }

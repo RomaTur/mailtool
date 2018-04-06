@@ -6,29 +6,33 @@ import './Form.css';
 
 interface FormProps {
   options: any;
+  changeFunc: any;
 }
 
 interface FormState {
-  input: string;
+  // obj: any;
 }
 
 class Form extends React.Component<FormProps, FormState> {
 
   constructor(props: any) {
     super(props);
-    this.state = {
-      input: ''
-    };
+    // this.state = {
+    //   obj: {}
+    // };
+  }
+
+  setter(key: string, value: any) {
+    this.props.changeFunc(key, value);
   }
 
   submitForm(e: any) {
     e.preventDefault();
   }
+
   reverse(element: any) {
     let param: any;
-    console.log(element);
     if (element.type === 'array') {
-      console.log(element.type);
       let arrayPush: any = [];
       element.elements.forEach((elem: any) => {
         const elemInside: any = this.reverse(elem) || null;
@@ -42,15 +46,15 @@ class Form extends React.Component<FormProps, FormState> {
     for (param in element) {
       if (element[param]) {
         if (element[param] === 'input') {
-          let inputReturn = <Input name={element.name}/>;
+          let inputReturn = <Input options={element} key={element.key} changeFunc={this.setter.bind(this)}/>;
           return inputReturn;
         }
         if (element[param] === 'textarea') {
-          let textArea = <TextArea name={element.name}/>;
+          let textArea = <TextArea options={element} key={element.key} changeFunc={this.setter.bind(this)}/>;
           return textArea;
         }
         if (element[param] === 'select') {
-          let select = <Select name={element.name} options={element.elements} default={element.default}/>;
+          let select = <Select options={element} changeFunc={this.setter.bind(this)}/>;
           return select;
         }
       }
@@ -70,13 +74,6 @@ class Form extends React.Component<FormProps, FormState> {
     return (
       <form className='form' onSubmit={this.submitForm.bind(this)}>
         {markDown}
-        {/* <select>
-           <option disabled>Выберите героя</option>
-           <option value='Чебурашка'>Чебурашка</option>
-           <option selected value='Крокодил Гена'>Крокодил Гена</option>
-           <option value='Шапокляк'>Шапокляк</option>
-           <option value='Крыса Лариса'>Крыса Лариса</option>
-        </select> */}
       </form>
     );
   }
