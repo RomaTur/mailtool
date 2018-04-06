@@ -18,18 +18,20 @@ class TemplatePreview extends React.Component<TemplateProps, {}> {
   private templ: HTMLDivElement;
 
   componentDidMount() {
+    // анимация при создании компонента
     TweenLite.fromTo(this.templ, 0.4, { x: -10, opacity: '0' }, 
       { x: 0, opacity: '1', delay: this.props.duration / 9 });
   }
 
   render() {
+    // параметры, которые передаются в роутер через ссылку
     const linkParams = {
       pathname: './template',
       state: {
-        title: this.props.title,
-        desc: this.props.desc,
-        options: this.props.options || ['email'],
-        templateHtml: this.props.templateHtml || 'Sorry'
+        title: this.props.title, // название шаблона
+        desc: this.props.desc, // краткое описание шаблона
+        options: this.props.options || [{type: 'input'}], // все параметры шаблона
+        templateHtml: this.props.templateHtml || 'Sorry' // разметка шаблона для отправки письма
       }
     };
     return (

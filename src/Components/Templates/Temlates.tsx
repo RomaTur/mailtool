@@ -4,10 +4,9 @@ import './Templates.css';
 
 import TemplatePreview from './TemplatePreview/TemplatePreview';
 const arrow = require('./arrow.svg');
-const templates = require('../../templates.json');
 
-let templateDesc = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
-templateDesc = templateDesc + 'Suspendisse id libero non felis ullamcorper efficitur a at massa.';
+// импорт только для разработки, необходимо будет подгружать с сервера
+const templates = require('../../templates.json');
 
 interface TemplatesState {
   templates: any;
@@ -22,6 +21,7 @@ class Templates extends React.Component<{}, TemplatesState> {
   }
 
   componentDidMount() {
+    // здесь нужно будет подгружать с сервера json
     this.setState({
       templates: templates.templates
     });

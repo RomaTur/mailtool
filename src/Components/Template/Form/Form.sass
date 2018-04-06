@@ -42,17 +42,18 @@ $color-close: #F77
     justify-content: space-between
     font-family: monospace
     font-size: 1rem
-    &:focus
-      border: 1px solid $color-theme
     &-name
       margin-right: 10px
     &-input
+      border: 1px solid #AAA
       border-radius: 5px
       padding: 5px 10px
       font-size: 0.9rem
       resize: none
       height: 50px
       outline: none
+      &:focus
+        border: 1px solid $color-theme
   &__select
     margin: 5px
     font-size: 1rem

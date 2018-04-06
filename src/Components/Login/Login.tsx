@@ -7,10 +7,13 @@ class Login extends React.Component {
   private loginDiv: HTMLDivElement;
 
   componentDidMount() {
+    // анимация когда компонент смонтирован
     TweenLite.fromTo(this.loginDiv, 0.4, { x: -10, opacity: '0' }, 
       { x: 0, opacity: '1', delay: 0.2 });
   }
-
+  /*
+    Сюда нужно будет прикрутить авторизацию
+  */
   render() {
     const loginParams = {
       pathname: './templates'

@@ -59,10 +59,12 @@ class Template extends React.Component<TemplateProps, TemplateState> {
   private templ: HTMLDivElement;
 
   componentDidMount() {
+    // анимация когда компонент примонтирован
     TweenLite.fromTo(this.templ, 0.4, { x: -10, opacity: '0' }, 
       { x: 0, opacity: '1', delay: 0.2 });
   }
 
+  // функция, которая передается в каждый компонент формы и добавляет или меняет значение ключа !важно понять!
   setter(key: string, value: any) {
     this.setState({
       obj: Object.assign(this.state.obj, {
@@ -97,6 +99,7 @@ class Template extends React.Component<TemplateProps, TemplateState> {
   }
 
   changePreviewHtml() {
+    // здесь все поменять
     let previewHtml = this.state.params.templateHtml;
     for (let key in this.state.inputs) {
       if (this.state.inputs[key] !== '') {
@@ -110,18 +113,11 @@ class Template extends React.Component<TemplateProps, TemplateState> {
 
   sendEmail(e: any) {
     e.preventDefault();
-    // if (this.state.inputs.email === '') {
-    //   return '';
-    // }
     const sendingObj = {
       to: this.state.inputs.email,
       subject: this.state.inputs.subject,
       html: this.state.previewHtml
     };
-
-    // var data = new FormData();
-    // data.append( 'json', JSON.stringify(sendingObj) );
-    // console.log(data);
     fetch('/maildata',
     {
         method: 'POST',
@@ -137,23 +133,6 @@ class Template extends React.Component<TemplateProps, TemplateState> {
   }
 
   render() {
-    // const propInputs = [];
-    // if (this.state.params.options.length !== 0) {
-    //   for (let i = 0; i < this.state.params.options.length; i++) {
-    //     propInputs.push(
-    //       <input
-    //         key={i}
-    //         type={this.state.params.options[i].type}
-    //         data-key={this.state.params.options[i].key}
-    //         className='form__input'
-    //         placeholder={this.state.params.options[i].placeholder}
-    //         required
-    //         onChange={this.changeInput}
-    //       />
-    //     );
-    //   }
-    // }
-
     return (
       <div className='template'>
         <Link to='./templates' className='template__back'>

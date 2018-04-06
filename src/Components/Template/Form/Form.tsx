@@ -15,23 +15,15 @@ interface FormState {
 
 class Form extends React.Component<FormProps, FormState> {
 
-  constructor(props: any) {
-    super(props);
-    // this.state = {
-    //   obj: {}
-    // };
-  }
-
+  // пробрасывает все значения в родитель
   setter(key: string, value: any) {
     this.props.changeFunc(key, value);
   }
 
-  submitForm(e: any) {
-    e.preventDefault();
-  }
-
+  // рекурсия
   reverse(element: any) {
     let param: any;
+    // если массив, то проходимся рекурсивно по всем элементам
     if (element.type === 'array') {
       let arrayPush: any = [];
       element.elements.forEach((elem: any) => {
@@ -41,29 +33,32 @@ class Form extends React.Component<FormProps, FormState> {
         );
       });
       const arrayReturn = <div className='form__array'>{arrayPush}</div>; 
-      return arrayReturn;
+      return arrayReturn; // возвращаем блок с компонентами
     }
+    // если обьект, то рендерим компонент с его параметрами
     for (param in element) {
       if (element[param]) {
         if (element[param] === 'input') {
           let inputReturn = <Input options={element} key={element.key} changeFunc={this.setter.bind(this)}/>;
-          return inputReturn;
+          return inputReturn; // возвращаем компонент
         }
         if (element[param] === 'textarea') {
           let textArea = <TextArea options={element} key={element.key} changeFunc={this.setter.bind(this)}/>;
-          return textArea;
+          return textArea; // возвращаем компонент
         }
         if (element[param] === 'select') {
           let select = <Select options={element} changeFunc={this.setter.bind(this)}/>;
-          return select;
+          return select; // возвращаем компонент
         }
       }
     }
-    return null;
+    return null; // в ином случае беда
   }
 
   render() {
     let markDown: any = [];
+
+    // первый рекурсивный проход по массиву из переданных параметров
     this.props.options.forEach((element: any) => {
       const elemInside: any = this.reverse(element) || null;
       markDown.push(
@@ -72,7 +67,7 @@ class Form extends React.Component<FormProps, FormState> {
     });
 
     return (
-      <form className='form' onSubmit={this.submitForm.bind(this)}>
+      <form className='form'>
         {markDown}
       </form>
     );
