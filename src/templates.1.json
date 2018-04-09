@@ -97,41 +97,7 @@
                           "name": "Доп",
                           "key": "product1DescAnother",
                           "value": ""
-                        },
-                        {
-                      "type": "button",
-                      "name": "Добавить",
-                      "key": "addSomething",
-                      "target": "product12Desc",
-                      "action": "add"
-                    },
-                    {
-                      "type": "array",
-                      "name": "Описание",
-                      "key": "product12Desc",
-                      "elements": [
-                        {
-                          "type": "select",
-                          "name": "Опция",
-                          "key": "product1DescSelect",
-                          "value": "",
-                          "elements": [
-                            {
-                              "name": "Первая опция",
-                              "key": "product1DescSelectOption1"
-                            },
-                            {
-                              "name": "Вторая опция",
-                              "key": "product1DescSelectOption2"
-                            },
-                            {
-                              "name": "Третья опция",
-                              "key": "product1DescSelectOption3"
-                            }
-                          ]
                         }
-                      ]
-                    }
                       ]
                     },
                     {

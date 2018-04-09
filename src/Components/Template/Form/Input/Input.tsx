@@ -26,8 +26,9 @@ class Input extends React.Component<InputProps, InputState> {
       <div className='form__input'>
         <span className='form__input-name'>{this.props.options.name}: </span>
         <input
+          type={this.props.options}
           placeholder='input'
-          value={this.state.value}
+          value={this.props.options.value}
           className='form__input-input'
           onChange={this.setVal.bind(this)}
         />

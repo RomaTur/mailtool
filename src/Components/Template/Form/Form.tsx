@@ -2,23 +2,21 @@ import * as React from 'react';
 import Input from './Input/Input';
 import TextArea from './TextArea/TextArea';
 import Select from './Select/Select';
+import Button from './Button/Button';
 import './Form.css';
 
 interface FormProps {
   options: any;
   changeFunc: any;
+  clickAction: any;
 }
 
-interface FormState {
-  // obj: any;
-}
-
-class Form extends React.Component<FormProps, FormState> {
+class Form extends React.Component<FormProps, {}> {
 
   // пробрасывает все значения в родитель
-  setter(key: string, value: any) {
-    this.props.changeFunc(key, value);
-  }
+  // setter(key: string, value: any) {
+  //   this.props.changeFunc(key, value);
+  // }
 
   // рекурсия
   reverse(element: any) {
@@ -39,16 +37,20 @@ class Form extends React.Component<FormProps, FormState> {
     for (param in element) {
       if (element[param]) {
         if (element[param] === 'input') {
-          let inputReturn = <Input options={element} key={element.key} changeFunc={this.setter.bind(this)}/>;
+          let inputReturn = <Input options={element} key={element.key} changeFunc={this.props.changeFunc.bind(this)}/>;
           return inputReturn; // возвращаем компонент
         }
         if (element[param] === 'textarea') {
-          let textArea = <TextArea options={element} key={element.key} changeFunc={this.setter.bind(this)}/>;
+          let textArea = <TextArea options={element} key={element.key} changeFunc={this.props.changeFunc.bind(this)}/>;
           return textArea; // возвращаем компонент
         }
         if (element[param] === 'select') {
-          let select = <Select options={element} changeFunc={this.setter.bind(this)}/>;
+          let select = <Select options={element} key={element.key} changeFunc={this.props.changeFunc.bind(this)}/>;
           return select; // возвращаем компонент
+        }
+        if (element[param] === 'button') {
+          let button = <Button options={element} key={element.key} clickAction={this.props.clickAction.bind(this)} />;
+          return button; // возвращаем компонент
         }
       }
     }

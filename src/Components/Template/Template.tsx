@@ -30,7 +30,6 @@ interface TemplateState {
   modalIsOpen: boolean;
   inputs: any;
   previewHtml: string;
-  obj: any;
 }
 
 class Template extends React.Component<TemplateProps, TemplateState> {
@@ -47,8 +46,7 @@ class Template extends React.Component<TemplateProps, TemplateState> {
       modalIsOpen: false,
       inputs: {
         email: ''
-      },
-      obj: {}
+      }
     };
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
@@ -64,13 +62,142 @@ class Template extends React.Component<TemplateProps, TemplateState> {
       { x: 0, opacity: '1', delay: 0.2 });
   }
 
+  // рекурсия -- Добавление/удаление обьекта в массив
+  changeEmpty(element: any, newTarget: any) {
+    // если массив, то проходимся рекурсивно по всем элементам
+    if (element.type === 'array') {
+      let arrayPush: any = [];
+      newTarget.forEach((e: any) => {
+        if (element.key === e.oldTarget) {
+          element.key = e.newTarget;
+        }
+      });
+      element.elements.forEach((elem: any) => {
+        const elemInside = this.changeEmpty(elem, newTarget) || null;
+        arrayPush.push(
+          elemInside
+        );
+      });
+      element.elements = arrayPush; 
+      return element; // возвращаем новый элемент
+    }
+    if (element.type === 'button') {
+      newTarget.forEach((e: any) => {
+        if (element.target === e.oldTarget) {
+          element.target = e.newTarget;
+        }
+      });
+      console.log(element, newTarget);
+    }
+    element.key = `${Math.random()}`;
+    element.value = '';
+    return element; // возвращаем элемент
+  }
+
+  changeArr(target: string, action: string) {
+    let tt = this.state.params;
+    let tempArr: any = [];
+    tt.options.forEach((element: any) => {
+      element = this.arrReverse(element, target, action);
+      tempArr.push(element);
+    });
+    tt.options = tempArr;
+    this.setState({
+      params: tt
+    });
+  }
+
+  getNewTargetArr(element: any, oldArr: any) {
+    if (element.type === 'array') {
+      // let arrayPush: any = [];
+      element.elements.forEach((elem: any) => {
+        const newArr = this.getNewTargetArr(elem, oldArr);
+        oldArr.concat(newArr);
+      });
+      return oldArr;
+    }
+    for (let anKey in element) {
+      if (element[anKey]) {
+        // var newNewArr = [{key: ''}];
+        if (element.type === 'button') {
+          oldArr.push({oldTarget: element.target, newTarget: ''});
+          return oldArr;
+        }
+      }
+    }
+    return oldArr;
+  }
+
+  arrReverse(element: any, target: string, action: string) {
+    // если массив, то проходимся рекурсивно по всем элементам
+    // if (element.type === 'button' && element.target === target && action === 'add') {
+    //   const newTarget = `${Math.random()}`;
+    //   console.log(newTarget);
+    //   element.target = newTarget;
+    // }
+    if (element.type === 'array') {
+      if (element.key === target) {
+        if (action === 'add') {
+          let targetArr = this.getNewTargetArr(element.elements[0], []);
+          targetArr.forEach((elem: any) => {
+            elem.newTarget = `${Math.random()}`;
+          });
+          let newObj: any = JSON.parse(JSON.stringify(element.elements[0]));
+          newObj = this.changeEmpty(newObj, targetArr);
+          element.elements.push(newObj);
+        }
+        return element;
+      } else {
+        let arrayPush: any = [];
+        element.elements.forEach((elem: any) => {
+          const elemInside = this.arrReverse(elem, target, action) || null;
+          arrayPush.push(
+            elemInside
+          );
+        });
+        element.elements = arrayPush;
+      }
+      return element; // возвращаем блок с компонентами
+    }
+    return element; // возвращаем элемент
+  }
+
   // функция, которая передается в каждый компонент формы и добавляет или меняет значение ключа !важно понять!
   setter(key: string, value: any) {
-    this.setState({
-      obj: Object.assign(this.state.obj, {
-        [ key ]: value
-      })
+    let tt = this.state.params;
+    let tempArr: any = [];
+    tt.options.forEach((element: any) => {
+      element = this.reverse(element, key, value);
+      tempArr.push(element);
     });
+    tt.options = tempArr;
+    this.setState({
+      params: tt
+    });
+  }
+
+  // рекурсия
+  reverse(element: any, key: string, value: string) {
+    let param: any;
+    // если массив, то проходимся рекурсивно по всем элементам
+    if (element.type === 'array') {
+      let arrayPush: any = [];
+      element.elements.forEach((elem: any) => {
+        const elemInside: any = this.reverse(elem, key, value) || null;
+        arrayPush.push(
+          elemInside
+        );
+      });
+      element.elements = arrayPush; 
+      return element; // возвращаем новый элемент
+    }
+    // если обьект, то проходимся по нему
+    for (param in element) {
+      if (element.key === key) {
+        element.value = value;
+      }
+    }
+    return element; // возвращаем элемент
   }
 
   openModal() {
@@ -174,6 +301,7 @@ class Template extends React.Component<TemplateProps, TemplateState> {
             <Form
               options={this.state.params.options}
               changeFunc={this.setter.bind(this)}
+              clickAction={this.changeArr.bind(this)}
             />
           </div>
         </div>
