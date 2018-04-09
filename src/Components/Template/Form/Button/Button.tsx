@@ -11,11 +11,21 @@ class Button extends React.Component<ButtonProps, {}> {
   }
 
   render() {
+    let val = '';
+    let classVal = '';
+    if (this.props.options.action === 'remove') {
+      classVal = 'form__element-remove' ;
+      val = this.props.options.name;
+    } else {
+      classVal = 'form__element-add';
+      val = this.props.options.name;
+    }
     return (
       <input
         type='button'
-        value={this.props.options.name}
+        value={val}
         onClick={this.action.bind(this)}
+        className={classVal}
       />
     );
   }

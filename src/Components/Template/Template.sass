@@ -3,18 +3,19 @@ $color-theme: #9CE
 $color-white: #FFFFFF
 $color-close: #F77
 .template
-  position: relative
-  display: flex
-  justify-content: center
-  align-items: center
-  width: 100%
-  height: 100%
-  overflow: hidden
+  height: 90%
+  padding: 30px
+  overflow-x: hidden
+  &::-webkit-scrollbar
+    width: 0
+  -ms-overflow-style: none
+  overflow: -moz-scrollbars-none
+  
 
 .template
   &__back
     position: absolute
-    top: 10px
+    top: 50px
     left: 40px
     display: flex
     align-items: center

@@ -60,6 +60,7 @@ class Template extends React.Component<TemplateProps, TemplateState> {
     // анимация когда компонент примонтирован
     TweenLite.fromTo(this.templ, 0.4, { x: -10, opacity: '0' }, 
       { x: 0, opacity: '1', delay: 0.2 });
+    
   }
 
   // рекурсия -- Добавление/удаление обьекта в массив
@@ -87,7 +88,6 @@ class Template extends React.Component<TemplateProps, TemplateState> {
           element.target = e.newTarget;
         }
       });
-      console.log(element, newTarget);
     }
     element.key = `${Math.random()}`;
     element.value = '';
@@ -143,8 +143,27 @@ class Template extends React.Component<TemplateProps, TemplateState> {
             elem.newTarget = `${Math.random()}`;
           });
           let newObj: any = JSON.parse(JSON.stringify(element.elements[0]));
+          if (newObj.type === 'array' && newObj.remove === true) {
+            newObj.key = `${Math.random()}`;
+            newObj.elements.unshift({
+              type: 'button',
+              name: 'Удалить',
+              target: newObj.key,
+              action: 'remove'
+            });
+          }
           newObj = this.changeEmpty(newObj, targetArr);
           element.elements.push(newObj);
+          console.log(element);
+        } else if (action === 'remove') {
+          let index = 0;
+          for (let i = 0; i < element.elements.length; i++) {
+            if (element.key === target) {
+              index = i;
+            }
+          }
+          console.log(element);
+          element.elements.splice(index, 1);
         }
         return element;
       } else {
@@ -182,6 +201,15 @@ class Template extends React.Component<TemplateProps, TemplateState> {
     // если массив, то проходимся рекурсивно по всем элементам
     if (element.type === 'array') {
       let arrayPush: any = [];
+      if (element.remove === true) {
+        // arrayPush.push({
+        //   type: 'button',
+        //   target: element.key,
+        //   action: 'remove',
+        //   name: ''
+        // });
+        console.log('remove');
+      }
       element.elements.forEach((elem: any) => {
         const elemInside: any = this.reverse(elem, key, value) || null;
         arrayPush.push(
