@@ -4,6 +4,7 @@ import TextArea from './TextArea/TextArea';
 import Select from './Select/Select';
 import Button from './Button/Button';
 import './Form.css';
+import '../../../Styles/Template1.css';
 
 interface FormProps {
   options: any;

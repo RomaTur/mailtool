@@ -8,6 +8,7 @@ import './Template.css';
 const arrow = require('./arrow.svg');
 const avatarImg = require('./avatar.svg');
 const subjectImg = require('./subject.svg');
+import createHtml from '../../BackLogic/index';
 
 const modalStyles = {
   content : {
@@ -42,7 +43,7 @@ class Template extends React.Component<TemplateProps, TemplateState> {
           options: [],
           templateHtml: '/-email-/'
       },
-      previewHtml: '',
+      previewHtml: '/-email-/',
       modalIsOpen: false,
       inputs: {
         email: ''
@@ -51,7 +52,6 @@ class Template extends React.Component<TemplateProps, TemplateState> {
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.changeInput = this.changeInput.bind(this);
   }
 
   private templ: HTMLDivElement;
@@ -91,6 +91,7 @@ class Template extends React.Component<TemplateProps, TemplateState> {
     }
     element.key = `${Math.random()}`;
     element.value = '';
+    
     return element; // возвращаем элемент
   }
 
@@ -109,7 +110,6 @@ class Template extends React.Component<TemplateProps, TemplateState> {
 
   getNewTargetArr(element: any, oldArr: any) {
     if (element.type === 'array') {
-      // let arrayPush: any = [];
       element.elements.forEach((elem: any) => {
         const newArr = this.getNewTargetArr(elem, oldArr);
         oldArr.concat(newArr);
@@ -118,7 +118,6 @@ class Template extends React.Component<TemplateProps, TemplateState> {
     }
     for (let anKey in element) {
       if (element[anKey]) {
-        // var newNewArr = [{key: ''}];
         if (element.type === 'button') {
           oldArr.push({oldTarget: element.target, newTarget: ''});
           return oldArr;
@@ -134,8 +133,18 @@ class Template extends React.Component<TemplateProps, TemplateState> {
     //   const newTarget = `${Math.random()}`;
     //   console.log(newTarget);
     //   element.target = newTarget;
-    // }
     if (element.type === 'array') {
+      if (action === 'remove') {
+        let index: any;
+        for (let i = 0; i < element.elements.length; i++) {
+          if (element.elements[i].key === target) {
+            index = i;
+            element.elements.splice(index, 1);
+            console.log(element);
+            return element;
+          }
+        }
+      }
       if (element.key === target) {
         if (action === 'add') {
           let targetArr = this.getNewTargetArr(element.elements[0], []);
@@ -154,16 +163,6 @@ class Template extends React.Component<TemplateProps, TemplateState> {
           }
           newObj = this.changeEmpty(newObj, targetArr);
           element.elements.push(newObj);
-          console.log(element);
-        } else if (action === 'remove') {
-          let index = 0;
-          for (let i = 0; i < element.elements.length; i++) {
-            if (element.key === target) {
-              index = i;
-            }
-          }
-          console.log(element);
-          element.elements.splice(index, 1);
         }
         return element;
       } else {
@@ -201,15 +200,6 @@ class Template extends React.Component<TemplateProps, TemplateState> {
     // если массив, то проходимся рекурсивно по всем элементам
     if (element.type === 'array') {
       let arrayPush: any = [];
-      if (element.remove === true) {
-        // arrayPush.push({
-        //   type: 'button',
-        //   target: element.key,
-        //   action: 'remove',
-        //   name: ''
-        // });
-        console.log('remove');
-      }
       element.elements.forEach((elem: any) => {
         const elemInside: any = this.reverse(elem, key, value) || null;
         arrayPush.push(
@@ -229,6 +219,38 @@ class Template extends React.Component<TemplateProps, TemplateState> {
   }
 
   openModal() {
+    this.state.params.options.forEach((element: any) => {
+      if (element.key === 'subject') {
+        this.setState({
+          inputs: Object.assign(this.state.inputs, {
+              [ element.key ]: element.value || 'Тема'
+          })
+        });
+      }
+      if (element.key === 'client') {
+        this.setState({
+          inputs: Object.assign(this.state.inputs, {
+              [ element.key ]: element.value || 'null'
+          })
+        });
+      }
+      if (element.key === 'email') {
+        this.setState({
+          inputs: Object.assign(this.state.inputs, {
+              [ element.key ]: element.value || 'email@email.net'
+          })
+        });
+      }
+    });
+    let previewHtml = this.state.params.templateHtml;
+    for (let key in this.state.inputs) {
+      if (this.state.inputs[key] !== '') {
+        previewHtml = previewHtml.replace(new RegExp(`/-${key}-/`, 'g'), this.state.inputs[key]);
+      }
+    }
+    this.setState({
+      previewHtml: previewHtml
+    });
     if (this.state.previewHtml !== '') {
       this.setState({modalIsOpen: true});
     }
@@ -240,17 +262,6 @@ class Template extends React.Component<TemplateProps, TemplateState> {
  
   closeModal() {
     this.setState({modalIsOpen: false});
-  }
-
-  changeInput(e: any) {
-    const attr = e.target.attributes.getNamedItem('data-key').value || 'null';
-    const attrVal = e.target.value || 'null';
-    this.setState({
-      inputs: Object.assign(this.state.inputs, {
-          [ attr ]: attrVal
-      })
-    });
-    this.changePreviewHtml();
   }
 
   changePreviewHtml() {
@@ -268,23 +279,26 @@ class Template extends React.Component<TemplateProps, TemplateState> {
 
   sendEmail(e: any) {
     e.preventDefault();
-    const sendingObj = {
-      to: this.state.inputs.email,
-      subject: this.state.inputs.subject,
-      html: this.state.previewHtml
-    };
-    fetch('/maildata',
-    {
-        method: 'POST',
-        body: JSON.stringify(sendingObj),
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        credentials: 'include'
-    })
-    .then(function(res: any) {
-      return res.json();
+    const finalHtml: any = createHtml(this.state);
+    this.setState({
+      previewHtml: finalHtml
     });
+    // const sendingObj = {
+    //   to: this.state.inputs.email,
+    //   subject: this.state.inputs.subject,
+    //   html: finalHtml
+    // };
+    // fetch('/maildata',
+    // {
+    //     method: 'POST',
+    //     body: JSON.stringify(sendingObj),
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     },
+    //     credentials: 'include'
+    // }).then(function(res: any) {
+    //   return res.json();
+    // });
   }
 
   render() {
@@ -294,7 +308,11 @@ class Template extends React.Component<TemplateProps, TemplateState> {
           <img src={arrow} className='template__back-arrow'/>
           <span className='template__back-text'>Назад</span>
         </Link>
-        <div className='template__wrapper' ref={(templ: any) => {this.templ = templ; }}>
+        <form
+            className='template__wrapper'
+            onSubmit={this.sendEmail.bind(this)}
+            ref={(templ: any) => {this.templ = templ; }}
+        >
           <h3 className='template__title'>{this.state.params.title}</h3>
           <div className='template__content'>
             <div className='template__preview-open' onClick={this.openModal}>
@@ -313,7 +331,7 @@ class Template extends React.Component<TemplateProps, TemplateState> {
               <div className='template__preview-header'>
                 <div className='template__preview-person'>
                   <img src={avatarImg} alt='user' className='template__preview-icon'/>
-                  <h3 className='template__preview-value'>{this.state.inputs.email}</h3>
+                  <h3 className='template__preview-value'>{this.state.inputs.email}, {this.state.inputs.client}</h3>
                 </div>
                 <div className='template__preview-border'/>
                 <div className='template__preview-subject'>
@@ -332,7 +350,9 @@ class Template extends React.Component<TemplateProps, TemplateState> {
               clickAction={this.changeArr.bind(this)}
             />
           </div>
-        </div>
+          <input type='submit' value='Отправить'/>
+          {this.state.previewHtml}
+        </form>
       </div>
     );
   }
