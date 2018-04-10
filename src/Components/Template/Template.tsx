@@ -4,6 +4,7 @@ import * as Modal from 'react-modal';
 import EmailPreview from './EmailPreview/EmailPreview';
 import Form from './Form/Form';
 import { TweenLite } from 'gsap';
+// const pug = require('pug');
 import './Template.css';
 const arrow = require('./arrow.svg');
 const avatarImg = require('./avatar.svg');
@@ -299,6 +300,9 @@ class Template extends React.Component<TemplateProps, TemplateState> {
     // }).then(function(res: any) {
     //   return res.json();
     // });
+    // console.log(pug.renderFile('../../template.pug', {
+    //   name: 'Timothy'
+    // }));
   }
 
   render() {

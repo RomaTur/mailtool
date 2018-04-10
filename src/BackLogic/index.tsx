@@ -2,20 +2,41 @@ import * as React from 'react';
 
 function reverse(element: any, html: any) {
   if (element.type === 'array') {
-    
-    html = reverse(element, html);
+    if (element.key === 'template1__products') {
+      html = (
+      <table className={element.key}>
+        <tbody>
+          {/* {
+            function() { return (
+            <tr>
+            <td>
+                2
+              </td>
+            </tr>
+            ); }
+          } */}
+          <tr>
+            <td>
+              2
+            </td>
+          </tr>
+        </tbody>
+      </table> );
+    }
+    // html = reverse(element, html);
+    return html;
   } else {
     return html;
   }
 }
 
 export default (state: any) => {
-  console.log(state);
-  const options = state.options;
+  const options = state.params.options;
   let final: any = <div>finalHtml</div>;
-  // options.forEach((element: any) => {
-  final = reverse(options, final);  
-  // });
-
+  let htmlArr: any = [];
+  options.forEach((element: any) => {
+    final = reverse(element, final);
+    htmlArr.push(final);
+  });
   return final;
 };
