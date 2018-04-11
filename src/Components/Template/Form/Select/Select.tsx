@@ -39,7 +39,7 @@ class Select extends React.Component<SelectProps, SelectState> {
     return (
       <div className='form__select'>
         <span className='form__select-name'>{this.props.options.name}: </span>
-        <select className='form__select-input' value={this.state.value} onChange={this.setVal.bind(this)}>
+        <select className='form__select-input' value={this.props.options.value} onChange={this.setVal.bind(this)}>
           {selectArr}
         </select>
       </div>

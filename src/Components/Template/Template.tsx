@@ -154,6 +154,7 @@ class Template extends React.Component<TemplateProps, TemplateState> {
           });
           let newObj: any = JSON.parse(JSON.stringify(element.elements[0]));
           if (newObj.type === 'array' && newObj.remove === true) {
+            newObj.elements.splice(0, 1);
             newObj.key = `${Math.random()}`;
             newObj.elements.unshift({
               type: 'button',
@@ -243,14 +244,15 @@ class Template extends React.Component<TemplateProps, TemplateState> {
         });
       }
     });
-    let previewHtml = this.state.params.templateHtml;
-    for (let key in this.state.inputs) {
-      if (this.state.inputs[key] !== '') {
-        previewHtml = previewHtml.replace(new RegExp(`/-${key}-/`, 'g'), this.state.inputs[key]);
-      }
-    }
+    // let previewHtml = this.state.params.templateHtml;
+    // for (let key in this.state.inputs) {
+    //   if (this.state.inputs[key] !== '') {
+    //     previewHtml = previewHtml.replace(new RegExp(`/-${key}-/`, 'g'), this.state.inputs[key]);
+    //   }
+    // // }
+    const finalHtml: any = createHtml(this.state);
     this.setState({
-      previewHtml: previewHtml
+      previewHtml: finalHtml
     });
     if (this.state.previewHtml !== '') {
       this.setState({modalIsOpen: true});
@@ -284,25 +286,22 @@ class Template extends React.Component<TemplateProps, TemplateState> {
     this.setState({
       previewHtml: finalHtml
     });
-    // const sendingObj = {
-    //   to: this.state.inputs.email,
-    //   subject: this.state.inputs.subject,
-    //   html: finalHtml
-    // };
-    // fetch('/maildata',
-    // {
-    //     method: 'POST',
-    //     body: JSON.stringify(sendingObj),
-    //     headers: {
-    //       'Content-Type': 'application/json'
-    //     },
-    //     credentials: 'include'
-    // }).then(function(res: any) {
-    //   return res.json();
-    // });
-    // console.log(pug.renderFile('../../template.pug', {
-    //   name: 'Timothy'
-    // }));
+    const sendingObj = {
+      to: this.state.inputs.email,
+      subject: this.state.inputs.subject,
+      html: finalHtml
+    };
+    fetch('/maildata',
+    {
+        method: 'POST',
+        body: JSON.stringify(sendingObj),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include'
+    }).then(function(res: any) {
+      return res.json();
+    });
   }
 
   render() {
@@ -354,8 +353,8 @@ class Template extends React.Component<TemplateProps, TemplateState> {
               clickAction={this.changeArr.bind(this)}
             />
           </div>
-          <input type='submit' value='Отправить'/>
-          {this.state.previewHtml}
+          <input type='submit' value='Отправить' className='form__button-submit'/>
+          {/* {this.state.previewHtml} */}
         </form>
       </div>
     );

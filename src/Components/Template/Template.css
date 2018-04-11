@@ -140,3 +140,17 @@
   width: 500px;
   margin: 0 auto 10px auto;
   border-bottom: 1px solid #cccccc; }
+
+.form__button-submit {
+  margin-top: 30px;
+  padding: 10px;
+  background-color: #ADA;
+  border: 1px solid #86ce86;
+  border-radius: 10px;
+  font-size: 1.4rem;
+  outline: none;
+  margin: 30px 30px 20px 30px;
+  cursor: pointer;
+  transition: 0.3s; }
+  .form__button-submit:hover {
+    background-color: #98d698; }

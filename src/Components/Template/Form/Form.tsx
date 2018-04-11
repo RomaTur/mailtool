@@ -31,7 +31,13 @@ class Form extends React.Component<FormProps, {}> {
           elemInside
         );
       });
-      const arrayReturn = <div className='form__array'>{arrayPush}</div>; 
+      const className = (element.class === 'list') ? 'form__array form__array-list' : 'form__array';
+      const classNameTitle = (element.title) ? 'form__array-title form__array-title--true' : 'form__array-title';
+      const arrayReturn = (
+        <div className={className}>
+          <h2 className={classNameTitle}>{element.title || ''}</h2>
+          {arrayPush}
+        </div>); 
       return arrayReturn; // возвращаем блок с компонентами
     }
     // если обьект, то рендерим компонент с его параметрами

@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import './Button.css';
 interface ButtonProps {
   options: any;
   clickAction: any;
@@ -15,18 +15,20 @@ class Button extends React.Component<ButtonProps, {}> {
     let classVal = '';
     if (this.props.options.action === 'remove') {
       classVal = 'form__element-remove' ;
-      val = this.props.options.name;
+      val = '';
     } else {
       classVal = 'form__element-add';
       val = this.props.options.name;
     }
     return (
-      <input
-        type='button'
-        value={val}
-        onClick={this.action.bind(this)}
-        className={classVal}
-      />
+      <div className={classVal}>
+        <input
+          type='button'
+          value={val}
+          onClick={this.action.bind(this)}
+          className={classVal}
+        />
+      </div>
     );
   }
 }

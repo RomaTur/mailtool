@@ -15,7 +15,6 @@ class Input extends React.Component<InputProps, InputState> {
     };
   }
   setVal(e: any) {
-    console.log(this.props.options.key);
     this.setState({
       value: e.target.value
     });
@@ -27,7 +26,7 @@ class Input extends React.Component<InputProps, InputState> {
         <span className='form__input-name'>{this.props.options.name}: </span>
         <input
           type={this.props.options}
-          placeholder='input'
+          placeholder={this.props.options.placeholder || 'input'}
           value={this.props.options.value}
           className='form__input-input'
           onChange={this.setVal.bind(this)}

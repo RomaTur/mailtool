@@ -1,0 +1,45 @@
+.form__element-add {
+  align-self: flex-end;
+  margin: 2px 5px; }
+  .form__element-add > input {
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #86ce86;
+    background: #ADA;
+    transition: 0.3s;
+    cursor: pointer; }
+    .form__element-add > input:hover {
+      background: #98d698; }
+
+.form__element-remove {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  right: 20px;
+  align-self: flex-end; }
+  .form__element-remove > input {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    opacity: 0;
+    padding: 0;
+    left: 0;
+    z-index: 100; }
+  .form__element-remove:before, .form__element-remove:after {
+    position: absolute;
+    content: '';
+    height: 33px;
+    width: 4px;
+    z-index: 1;
+    background-color: #F99;
+    left: 15px;
+    transition: 0.3s;
+    border-radius: 2px; }
+    .form__element-remove:before:hover, .form__element-remove:after:hover {
+      background-color: #990000; }
+  .form__element-remove:before {
+    transform: rotate(45deg); }
+  .form__element-remove:after {
+    transform: rotate(-45deg); }

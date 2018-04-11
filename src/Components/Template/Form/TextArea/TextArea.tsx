@@ -21,7 +21,6 @@ class TextArea extends React.Component<TextAreaProps, TextAreaState> {
     this.setState({
       value: e.target.value
     });
-    console.log(this.props.options.key);
     this.props.changeFunc(this.props.options.key, e.target.value);
   }
 
@@ -29,7 +28,7 @@ class TextArea extends React.Component<TextAreaProps, TextAreaState> {
     return (
       <div className='form__textarea'>
         <span className='form__textarea-name'>{this.props.options.name}: </span>
-        <textarea className='form__textarea-input' value={this.state.value} onChange={this.setVal.bind(this)}/>
+        <textarea className='form__textarea-input' value={this.props.options.value} onChange={this.setVal.bind(this)}/>
       </div>
     );
   }

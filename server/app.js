@@ -27,7 +27,6 @@ app.use(function(req, res, next) {
 // app.use('/', indexRouter);
 
 app.post('/maildata', function(req, res) {
-  console.log(req.body)
   sendMail(req);
 })
 
