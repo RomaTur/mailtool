@@ -1,5 +1,6 @@
-// const _ = require('lodash');
-import * as _ from 'lodash';
+module.exports = function(state) {
+  const _ = require('lodash');
+// import * as _ from 'lodash';
 
 const tpl = `
 <!DOCTYPE html>
@@ -592,16 +593,16 @@ xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:offic
 `;
 // <% products.forEach(function(product) { %>
 //   <% }); %>
-function findElems(findElem: string, options: any) {
-  let returnArr: any = [];
+function findElems(findElem, options) {
+  let returnArr = [];
   if (options) {
-  options.forEach((element: any) => {
+  options.forEach((element) => {
     if (element.key === findElem) {
       if (element.type === 'array') {
-        element.elements.forEach((elem: any) => {
-          let returnObj: any = {};
+        element.elements.forEach((elem) => {
+          let returnObj = {};
           if (elem.type === 'array') {
-          elem.elements.forEach((element: any) => {
+          elem.elements.forEach((element) => {
             if (element.elem) {
               returnObj = Object.assign({
                 [ element.elem ]: element.value
@@ -620,13 +621,13 @@ function findElems(findElem: string, options: any) {
   }
   return returnArr;
 }
-function findObj(findElem: string, options: any) {
+function findObj(findElem, options) {
   let returnObj = {};
   if (options) {
-    options.forEach((element: any) => {
+    options.forEach((element) => {
       if (element.key === findElem) {
         if (element.type === 'array') {
-            element.elements.forEach((element: any) => {
+            element.elements.forEach((element) => {
               if (element.elem) {
                 returnObj = Object.assign({
                   [ element.elem ]: element.value
@@ -651,9 +652,9 @@ function findObj(findElem: string, options: any) {
   return returnObj;
 }
 
-function sumTotalPrice(products: any) {
+function sumTotalPrice(products) {
   let returnPrice = 0;
-  products.forEach((element: any) => {
+  products.forEach((element) => {
     if (element.price) {
       element.price = parseInt(element.price, 10);
       if (element.price < 0) {
@@ -676,13 +677,13 @@ function sumTotalPrice(products: any) {
   return returnPrice;
 }
 
-function compile(options: any) {
+function compile(options) {
 
   const products = findElems('template1__products', options);
-  const totalPrice: number = sumTotalPrice(products);
-  const author: any = findObj('author', options);
-  const client: any = findObj('client', options);
-  const compiledTemplate: string = _.template(tpl)({
+  const totalPrice = sumTotalPrice(products);
+  const author = findObj('author', options);
+  const client = findObj('client', options);
+  const compiledTemplate = _.template(tpl)({
     products: products,
     totalPrice: totalPrice,
     author: author,
@@ -691,8 +692,7 @@ function compile(options: any) {
   return compiledTemplate;
 }
 
-export default (state: any) => {
-  const options = state.params.options;
-  const final = compile(options);
-  return final;
-};
+const options = state.params.options;
+const final = compile(options);
+return final;
+}

@@ -10,6 +10,7 @@ const arrow = require('./arrow.svg');
 const avatarImg = require('./avatar.svg');
 const subjectImg = require('./subject.svg');
 import createHtml from '../../BackLogic/index';
+import swal from 'sweetalert';
 
 const modalStyles = {
   content : {
@@ -30,6 +31,7 @@ interface TemplateProps {
 interface TemplateState {
   params: any;
   modalIsOpen: boolean;
+  show: boolean;
   inputs: any;
   previewHtml: string;
 }
@@ -38,11 +40,13 @@ class Template extends React.Component<TemplateProps, TemplateState> {
   constructor(props: any) {
     super(props);
     this.state = {
+      show: false,
       params: this.props.location.state || {
           title: 'Empty title',
           desc: 'Empty desc',
           options: [],
-          templateHtml: '/-email-/'
+          templateHtml: '/-email-/',
+          logic: 'template1.ts'
       },
       previewHtml: '/-email-/',
       modalIsOpen: false,
@@ -61,7 +65,6 @@ class Template extends React.Component<TemplateProps, TemplateState> {
     // анимация когда компонент примонтирован
     TweenLite.fromTo(this.templ, 0.4, { x: -10, opacity: '0' }, 
       { x: 0, opacity: '1', delay: 0.2 });
-    
   }
 
   // рекурсия -- Добавление/удаление обьекта в массив
@@ -244,12 +247,6 @@ class Template extends React.Component<TemplateProps, TemplateState> {
         });
       }
     });
-    // let previewHtml = this.state.params.templateHtml;
-    // for (let key in this.state.inputs) {
-    //   if (this.state.inputs[key] !== '') {
-    //     previewHtml = previewHtml.replace(new RegExp(`/-${key}-/`, 'g'), this.state.inputs[key]);
-    //   }
-    // // }
     const finalHtml: any = createHtml(this.state);
     this.setState({
       previewHtml: finalHtml
@@ -260,48 +257,96 @@ class Template extends React.Component<TemplateProps, TemplateState> {
   }
  
   afterOpenModal() {
-    console.log('modal opened');
+    console.log('');
   }
  
   closeModal() {
     this.setState({modalIsOpen: false});
   }
 
-  changePreviewHtml() {
-    // здесь все поменять
-    let previewHtml = this.state.params.templateHtml;
-    for (let key in this.state.inputs) {
-      if (this.state.inputs[key] !== '') {
-        previewHtml = previewHtml.replace(new RegExp(`/-${key}-/`, 'g'), this.state.inputs[key]);
+  checkEmptyInput(element: any) {
+    if (element) {
+      if (element.type === 'array') {
+        element.elements.forEach((elem: any) => {
+          this.checkEmptyInput(elem);
+        });
+      } else {
+        for (const key in element) {
+          if (element.hasOwnProperty(key)) {
+            if (key === 'value') {
+            const elem = element[key];
+            console.log(elem);
+              if (elem === '') {
+                swal({
+                  title: 'Не все поля заполнены',
+                  icon: 'warning',
+                  timer: 2000
+                });
+                return false;
+              } else {
+                return true;
+              }
+            }
+          }
+        }
+        return true;
       }
+      return true;
     }
-    this.setState({
-      previewHtml: previewHtml
-    });
+    return true;
   }
 
   sendEmail(e: any) {
     e.preventDefault();
-    const finalHtml: any = createHtml(this.state);
-    this.setState({
-      previewHtml: finalHtml
+    let url = '';
+    if (window.location.hostname === 'localhost') {
+      url = 'http://localhost:3001';
+    }
+    let isFilledInputs = true;
+    this.state.params.options.forEach((element: any) => {
+      if (isFilledInputs) {
+        isFilledInputs = this.checkEmptyInput(element);
+      }
     });
-    const sendingObj = {
-      to: this.state.inputs.email,
-      subject: this.state.inputs.subject,
-      html: finalHtml
-    };
-    fetch('/maildata',
-    {
-        method: 'POST',
-        body: JSON.stringify(sendingObj),
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        credentials: 'include'
-    }).then(function(res: any) {
-      return res.json();
-    });
+    console.log(isFilledInputs);
+    if (isFilledInputs) {
+      // const renderHtml = require(`${url}/logic?${this.state.params.logic}`);
+      const renderHtml: any = fetch(`${url}/logic`);
+      const finalHtml = renderHtml(this.state);
+      // const finalHtml: any = createHtml(this.state);
+      this.setState({
+        previewHtml: finalHtml
+      });
+      const sendingObj = {
+        to: this.state.inputs.email,
+        subject: this.state.inputs.subject,
+        html: finalHtml
+      };
+      fetch(`${url}/maildata`,
+      {
+          method: 'POST',
+          body: JSON.stringify(sendingObj),
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          credentials: 'include'
+      }).then(function(res: any) {
+        if (res.status === 200) {
+          swal({
+            title: 'Успешно отправлено!',
+            icon: 'success',
+            timer: 2000
+          });
+        }
+        return res;
+      }).catch((res: any) => {
+        swal({
+          title: 'Произошла ошибка!',
+          icon: 'error',
+          timer: 2000
+        });
+      });
+    }
   }
 
   render() {

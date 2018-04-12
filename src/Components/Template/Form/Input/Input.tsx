@@ -30,6 +30,7 @@ class Input extends React.Component<InputProps, InputState> {
           value={this.props.options.value}
           className='form__input-input'
           onChange={this.setVal.bind(this)}
+          required
         />
       </div>
     );

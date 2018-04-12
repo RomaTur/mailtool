@@ -6,11 +6,13 @@
           "description": "Список чего-нибудь из чего можно составить таблицу.",
           "templateHtml": "/-email-/",
           "styles": "./Styles/Template1.css",
+          "logic": "template1.ts",
           "options": [
             {
               "type": "input",
               "name": "Кому",
               "key": "client",
+              "elem": "client",
               "value": "",
               "placeholder": "Дмитрий Николаевич"
             },
@@ -49,13 +51,6 @@
                       "action": "add"
                     },
                     {
-                      "type": "img",
-                      "name": "img",
-                      "key": "product1Img",
-                      "value": "https://nizhniy.kkm.ru/upload/iblock/e0a/b2009b8a-9148-11e6-80cb-005056867087_eff7f7da-88cb-11e7-80e1-005056867087.jpeg",
-                      "elem": "img"
-                    },
-                    {
                       "type": "input",
                       "name": "Наименование",
                       "key": "product1",
@@ -85,6 +80,13 @@
                       "elem": "count",
                       "value": "1",
                       "placeholder": "1"
+                    },
+                    {
+                      "type": "input",
+                      "name": "img",
+                      "key": "product1Img",
+                      "value": "https://nizhniy.kkm.ru/upload/iblock/e0a/b2009b8a-9148-11e6-80cb-005056867087_eff7f7da-88cb-11e7-80e1-005056867087.jpeg",
+                      "elem": "img"
                     }
                   ]
                 }

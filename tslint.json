@@ -1,5 +1,8 @@
 {
     "extends": ["tslint-react"],
+    "exclude": [
+                "server/templates.json"
+    ],
     "rules": {
         "align": [
             false,

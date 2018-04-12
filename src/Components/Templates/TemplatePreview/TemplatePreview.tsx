@@ -11,6 +11,7 @@ interface TemplateProps {
   options: any;
   templateHtml: string;
   duration: number;
+  logic: string;
 }
 
 class TemplatePreview extends React.Component<TemplateProps, {}> {
@@ -31,7 +32,8 @@ class TemplatePreview extends React.Component<TemplateProps, {}> {
         title: this.props.title, // название шаблона
         desc: this.props.desc, // краткое описание шаблона
         options: this.props.options || [{type: 'input'}], // все параметры шаблона
-        templateHtml: this.props.templateHtml || 'Sorry' // разметка шаблона для отправки письма
+        templateHtml: this.props.templateHtml || 'Sorry', // разметка шаблона для отправки письма
+        logic: this.props.logic || 'template1.ts'
       }
     };
     return (
