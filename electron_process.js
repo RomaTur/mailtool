@@ -13,7 +13,7 @@ const url = require('url');
 let mainWindow
 
 app.on('ready', () => {
-    (process.env.ELECTRON_START_URL) ? console.log('development') : require('./server/bin/www');
+    // (process.env.ELECTRON_START_URL) ? console.log('development') : require('./server/bin/www');
     mainWindow = new BrowserWindow({width: 900, height: 800})
     // const startUrl = process.env.ELECTRON_START_URL || url.format({
     //     pathname: path.join(__dirname, './index.html'),

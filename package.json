@@ -16,7 +16,7 @@
     "start-js": "react-scripts-ts start",
     "build-js": "react-scripts-ts build",
     "electron": "electron ./build",
-    "dist": "build",
+    "dist": "ELECTRON_START_URL=http://romatur.xyz:4000 build",
     "gulp": "gulp build",
     "start-electron": "npm-run-all -p start electron-dev"
   },

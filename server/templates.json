@@ -5,7 +5,7 @@
           "title": "Список чего-нибудь",
           "description": "Список чего-нибудь из чего можно составить таблицу.",
           "templateHtml": "",
-          "logic": "template1.js",
+          "searchElem": ["client", "subject", "email", "products", "author"],
           "options": [
             {
               "type": "input",
@@ -19,6 +19,7 @@
               "type": "input",
               "name": "Тема",
               "key": "subject",
+              "elem": "subject",
               "value": "",
               "placeholder": "Тема"
             },
@@ -26,6 +27,7 @@
               "type": "input",
               "name": "Email",
               "key": "email",
+              "elem": "email",
               "value": "",
               "placeholder": "petrov@lad24.ru"
             },
@@ -33,6 +35,7 @@
               "type": "array",
               "name": "things",
               "key": "template1__products",
+              "elem": "products",
               "remove": true,
               "title": "Товары",
               "elements": [
@@ -95,6 +98,7 @@
               "type": "array",
               "name": "author",
               "key": "author",
+              "elem": "author",
               "title": "Отправитель",
               "elements": [
                 {

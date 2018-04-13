@@ -9,8 +9,8 @@ import './Template.css';
 const arrow = require('./arrow.svg');
 const avatarImg = require('./avatar.svg');
 const subjectImg = require('./subject.svg');
-import createHtml from '../../BackLogic/index';
 import swal from 'sweetalert';
+import * as _ from 'lodash';
 
 const modalStyles = {
   content : {
@@ -132,11 +132,6 @@ class Template extends React.Component<TemplateProps, TemplateState> {
   }
 
   arrReverse(element: any, target: string, action: string) {
-    // если массив, то проходимся рекурсивно по всем элементам
-    // if (element.type === 'button' && element.target === target && action === 'add') {
-    //   const newTarget = `${Math.random()}`;
-    //   console.log(newTarget);
-    //   element.target = newTarget;
     if (element.type === 'array') {
       if (action === 'remove') {
         let index: any;
@@ -144,7 +139,6 @@ class Template extends React.Component<TemplateProps, TemplateState> {
           if (element.elements[i].key === target) {
             index = i;
             element.elements.splice(index, 1);
-            console.log(element);
             return element;
           }
         }
@@ -223,6 +217,36 @@ class Template extends React.Component<TemplateProps, TemplateState> {
     return element; // возвращаем элемент
   }
 
+  sumPrice(elem: any, findElem: string) {
+    let total = 0;
+      elem.forEach((element: any) => {
+        if (element.elem === findElem) {
+          let subTotal = 0;
+          element.elements.forEach((elem: any) => {
+            elem.elements.forEach((elem: any) => {
+              if (elem.elem === 'price') {
+                subTotal = elem.value;
+              }
+              if (elem.elem === 'count') {
+                subTotal = subTotal * elem.value;
+              }
+            });
+          });
+          total += subTotal;
+        }
+      });
+      return total;
+  }
+
+  renderHtml() {
+    let totalPrice = this.sumPrice(this.state.params.options, 'products');
+    const compiledTemplate: string = _.template(this.state.params.templateHtml)({
+      options: this.state.params.options,
+      totalPrice: totalPrice
+    });
+    return compiledTemplate;
+  }
+
   openModal() {
     this.state.params.options.forEach((element: any) => {
       if (element.key === 'subject') {
@@ -247,7 +271,7 @@ class Template extends React.Component<TemplateProps, TemplateState> {
         });
       }
     });
-    const finalHtml: any = createHtml(this.state);
+    const finalHtml: any = this.renderHtml();
     this.setState({
       previewHtml: finalHtml
     });
@@ -273,25 +297,22 @@ class Template extends React.Component<TemplateProps, TemplateState> {
       } else {
         for (const key in element) {
           if (element.hasOwnProperty(key)) {
+            if (element.elem === 'client' || element.elem === 'email' || element.elem === 'subject') {
             if (key === 'value') {
             const elem = element[key];
-            console.log(elem);
-              if (elem === '') {
+              if (elem === '' || elem === ' ') {
                 swal({
-                  title: 'Не все поля заполнены',
+                  title: 'Не заполнены основные поля',
                   icon: 'warning',
                   timer: 2000
                 });
                 return false;
-              } else {
-                return true;
               }
             }
           }
+          }
         }
-        return true;
       }
-      return true;
     }
     return true;
   }
@@ -306,14 +327,11 @@ class Template extends React.Component<TemplateProps, TemplateState> {
     this.state.params.options.forEach((element: any) => {
       if (isFilledInputs) {
         isFilledInputs = this.checkEmptyInput(element);
+        console.log(isFilledInputs);
       }
     });
-    console.log(isFilledInputs);
     if (isFilledInputs) {
-      // const renderHtml = require(`${url}/logic?${this.state.params.logic}`);
-      const renderHtml: any = fetch(`${url}/logic`);
-      const finalHtml = renderHtml(this.state);
-      // const finalHtml: any = createHtml(this.state);
+      const finalHtml = this.renderHtml();
       this.setState({
         previewHtml: finalHtml
       });
@@ -330,21 +348,26 @@ class Template extends React.Component<TemplateProps, TemplateState> {
             'Content-Type': 'application/json'
           },
           credentials: 'include'
-      }).then(function(res: any) {
+      }).then((res: any) => {
         if (res.status === 200) {
           swal({
             title: 'Успешно отправлено!',
             icon: 'success',
             timer: 2000
           });
+        } else {
+          swal({
+            title: 'Произошла ошибка!',
+            icon: 'error',
+            timer: 2000
+          });
         }
-        return res;
-      }).catch((res: any) => {
-        swal({
-          title: 'Произошла ошибка!',
-          icon: 'error',
-          timer: 2000
-        });
+      }).catch(() => {
+        // swal({
+        //   title: 'Произошла ошибка!',
+        //   icon: 'error',
+        //   timer: 2000
+        // });
       });
     }
   }
