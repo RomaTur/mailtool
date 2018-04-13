@@ -363,11 +363,11 @@ class Template extends React.Component<TemplateProps, TemplateState> {
           });
         }
       }).catch(() => {
-        // swal({
-        //   title: 'Произошла ошибка!',
-        //   icon: 'error',
-        //   timer: 2000
-        // });
+        swal({
+          title: 'Произошла ошибка!',
+          icon: 'error',
+          timer: 2000
+        });
       });
     }
   }
