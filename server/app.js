@@ -26,7 +26,7 @@ app.use(function(req, res, next) {
 
 app.post('/maildata', function(req, res) {
   sendMail(req);
-  // res.sendStatus(200);
+  res.sendStatus(200);
 })
 
 app.get('/templates', function(req, res) {

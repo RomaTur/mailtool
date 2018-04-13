@@ -321,7 +321,7 @@ class Template extends React.Component<TemplateProps, TemplateState> {
     e.preventDefault();
     let url = '';
     if (window.location.hostname === 'localhost') {
-      url = 'http://localhost:3001';
+      url = 'http://localhost:3004';
     }
     let isFilledInputs = true;
     this.state.params.options.forEach((element: any) => {
@@ -331,6 +331,29 @@ class Template extends React.Component<TemplateProps, TemplateState> {
       }
     });
     if (isFilledInputs) {
+      this.state.params.options.forEach((element: any) => {
+        if (element.key === 'subject') {
+          this.setState({
+            inputs: Object.assign(this.state.inputs, {
+                [ element.key ]: element.value || 'Тема'
+            })
+          });
+        }
+        if (element.key === 'client') {
+          this.setState({
+            inputs: Object.assign(this.state.inputs, {
+                [ element.key ]: element.value || 'null'
+            })
+          });
+        }
+        if (element.key === 'email') {
+          this.setState({
+            inputs: Object.assign(this.state.inputs, {
+                [ element.key ]: element.value || 'email@email.net'
+            })
+          });
+        }
+      });
       const finalHtml = this.renderHtml();
       this.setState({
         previewHtml: finalHtml

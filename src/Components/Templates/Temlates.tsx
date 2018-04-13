@@ -616,8 +616,8 @@ class Templates extends React.Component<{}, TemplatesState> {
     //   templates: templates.templates
     // });
     // const templates = require('../../templates.json');
-    if (window.location.host === 'localhost:3000') {
-      fetch('http://localhost:3001/templates')
+    if (window.location.hostname === 'localhost') {
+      fetch('http://localhost:3004/templates')
                     .then((response: any) => {
                       return response.json();
                     }).then((data: any) => {

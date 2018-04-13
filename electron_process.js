@@ -20,7 +20,7 @@ app.on('ready', () => {
     //     protocol: 'file:',
     //     slashes: true
     // });
-    const startUrl = process.env.ELECTRON_START_URL || 'http://localhost:3001';
+    const startUrl = 'http://romatur.xyz:3004';
     mainWindow.loadURL(startUrl);
 
 })
