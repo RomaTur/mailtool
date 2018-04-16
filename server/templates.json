@@ -231,40 +231,261 @@
                 }
               ]
             }
-            
           ],
           "templateHTML": "" 
         },
         {
           "key": "template3",
-          "title": "Test",
-          "description": "Test",
+          "title": "Коммерческое предложение",
+          "description": "Сделать шаблон для для коммерческого предложения",
           "templateHtml": "",
           "options": [
             {
               "type": "input",
-              "placeholder": "Имя",
-              "key": "name"
+              "name": "Кому",
+              "key": "client",
+              "elem": "client",
+              "value": "",
+              "placeholder": "Дмитрий Николаевич"
             },
             {
               "type": "input",
-              "placeholder": "Тема",
-              "key": "subject"
+              "name": "Тема",
+              "key": "subject",
+              "elem": "subject",
+              "value": "",
+              "placeholder": "Тема"
             },
             {
-              "type": "textarea",
-              "placeholder": "Описание",
-              "key": "desc"
+              "type": "input",
+              "name": "Email",
+              "key": "email",
+              "elem": "email",
+              "value": "",
+              "placeholder": "petrov@lad24.ru"
             },
             {
-              "type": "textarea",
-              "placeholder": "Ключевые слова",
-              "key": "keywords"
+              "type": "array",
+              "name": "Продукты",
+              "key": "products",
+              "title": "Товары",
+              "remove": true,
+              "elements": [
+                {
+                  "type": "array",
+                  "name": "product",
+                  "key": "product",
+                  "class": "",
+                  "remove": true,
+                  "elements": [
+                    {
+                      "type": "button",
+                      "name": "Добавить",
+                      "key": "addProduct",
+                      "target": "products",
+                      "action": "add"
+                    },
+                    {
+                      "type": "select",
+                      "name": "Товар",
+                      "key": "product",
+                      "elem": "productname",
+                      "value": "",
+                      "target": "product",
+                      "elements": [
+                        {
+                          "name": "Эвотор 7.2",
+                          "desc": "Это пример довольно таки длинного комментария. Из-за того, что он такой длинный, он занимает много места, но иногда это даже хорошо. Тут менеджер может подробно описать преимущества какого-либо дувайса, исходя из ситуации",
+                          "price": 18490,
+                          "img": "https://nizhniy.kkm.ru/upload/iblock/e0a/b2009b8a-9148-11e6-80cb-005056867087_eff7f7da-88cb-11e7-80e1-005056867087.jpeg",
+                          "key": "evotor"
+                        },
+                        {
+                          "name": "Весы ШТРИХ-Слим 300М 15-2,5 Д1Н",
+                          "desc": "По-швейцарски точные, по-немецки надежные",
+                          "price": 8500,
+                          "img": "https://www.shtrih-m.ru/upload/iblock/e64/shtrih_slim.jpg",
+                          "key": "weightslim"
+                        },
+                        {
+                          "name": "Драйвер для весов серии ШТРИХ-Слим",
+                          "desc": "",
+                          "price": 1000,
+                          "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoQq4DurnKlugfZq4eW-0IASM6p_39_ODf3Oc-uM0QbwAdtQr4pw",
+                          "key": "driverweightslim"
+                        },
+                        {
+                          "name": "Переходгик для весов CAS",
+                          "desc": "",
+                          "price": 300,
+                          "img": "https://kkt365.ru/storage/app/media/products/cropped-images/adapter-com-0-0-0-0-1506326204.png",
+                          "key": "cabelweightslim"
+                        },
+                        {
+                          "name": "Дисплей покупателя",
+                          "desc": "Повышает доверие покупателей, ускоряет процесс торговли",
+                          "price": 3300,
+                          "img": "http://экма-сервис.рф/wp-content/uploads/2016/09/stoyka_01-300x212.jpg",
+                          "key": "clientdisplay"
+                        },
+                        {
+                          "name": "Драйвер для дисплея покупателя",
+                          "desc": "",
+                          "price": 1000,
+                          "img": "https://avatars1.githubusercontent.com/u/26476232?s=88&v=4",
+                          "key": "clientdisplaydriver"
+                        },
+                        {
+                          "name": "1С: Розница",
+                          "desc": "Учет и оптимизация розничной торговли",
+                          "price": 700,
+                          "img": "http://1c.ru/static/images/logo.png",
+                          "key": "onecsell"
+                        },
+                        {
+                          "name": "Подключение к ОФД",
+                          "desc": "Избавим вас от лишних хлопот",
+                          "price": 3000,
+                          "img": "https://84.img.avito.st/640x480/4301061484.jpg",
+                          "key": "ofd"
+                        },
+                        {
+                          "name": "Техподдержка HelpMe",
+                          "desc": "Оперативно решим ваши проблемы",
+                          "price": 550,
+                          "img": "https://84.img.avito.st/640x480/4301061484.jpg",
+                          "key": "helpme"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "textarea",
+                      "name": "Описание",
+                      "elem": "productdesc",
+                      "key": "productDesc",
+                      "value": ""
+                    },
+                    {
+                      "type": "input",
+                      "name": "Цена",
+                      "key": "price",
+                      "elem": "price",
+                      "value": "",
+                      "placeholder": "999"
+                    },
+                    {
+                      "type": "input",
+                      "name": "Кол-во",
+                      "key": "count",
+                      "elem": "count",
+                      "value": "1",
+                      "placeholder": "1"
+                    }
+                  ]
+                }
+              ]
             },
             {
-              "type": "email",
-              "placeholder": "Email",
-              "key": "email"
+              "type": "array",
+              "name": "author",
+              "key": "author",
+              "elem": "author",
+              "title": "Отправитель",
+              "elements": [
+                {
+                  "type": "input",
+                  "name": "Имя",
+                  "key": "authorName",
+                  "elem": "authorName",
+                  "value": "",
+                  "placeholder": "Хабибулина Зульфия"
+                },
+                {
+                  "type": "input",
+                  "name": "Телефон",
+                  "key": "authorTel",
+                  "elem": "authorTel",
+                  "value": "",
+                  "placeholder": "+7 904 056 87 78"
+                },
+                {
+                  "type": "input",
+                  "name": "Email",
+                  "key": "authorEmail",
+                  "elem": "authorEmail",
+                  "value": "",
+                  "placeholder": "habizulf@lad24.ru"
+                }
+              ]
+            },
+            {
+              "type": "list",
+              "name": "products",
+              "elements": [
+                {
+                  "name": "Эвотор 7.2",
+                  "desc": "Это пример довольно таки длинного комментария. Из-за того, что он такой длинный, он занимает много места, но иногда это даже хорошо. Тут менеджер может подробно описать преимущества какого-либо дувайса, исходя из ситуации",
+                  "price": 18490,
+                  "img": "https://nizhniy.kkm.ru/upload/iblock/e0a/b2009b8a-9148-11e6-80cb-005056867087_eff7f7da-88cb-11e7-80e1-005056867087.jpeg",
+                  "key": "evotor"
+                },
+                {
+                  "name": "Весы ШТРИХ-Слим 300М 15-2,5 Д1Н",
+                  "desc": "По-швейцарски точные, по-немецки надежные",
+                  "price": 8500,
+                  "img": "https://www.shtrih-m.ru/upload/iblock/e64/shtrih_slim.jpg",
+                  "key": "weightslim"
+                },
+                {
+                  "name": "Драйвер для весов серии ШТРИХ-Слим",
+                  "desc": "",
+                  "price": 1000,
+                  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoQq4DurnKlugfZq4eW-0IASM6p_39_ODf3Oc-uM0QbwAdtQr4pw",
+                  "key": "driverweightslim"
+                },
+                {
+                  "name": "Переходгик для весов CAS",
+                  "desc": "",
+                  "price": 300,
+                  "img": "https://kkt365.ru/storage/app/media/products/cropped-images/adapter-com-0-0-0-0-1506326204.png",
+                  "key": "cabelweightslim"
+                },
+                {
+                  "name": "Дисплей покупателя",
+                  "desc": "Повышает доверие покупателей, ускоряет процесс торговли",
+                  "price": 3300,
+                  "img": "http://экма-сервис.рф/wp-content/uploads/2016/09/stoyka_01-300x212.jpg",
+                  "key": "clientdisplay"
+                },
+                {
+                  "name": "Драйвер для дисплея покупателя",
+                  "desc": "",
+                  "price": 1000,
+                  "img": "https://avatars1.githubusercontent.com/u/26476232?s=88&v=4",
+                  "key": "clientdisplaydriver"
+                },
+                {
+                  "name": "1С: Розница",
+                  "desc": "Учет и оптимизация розничной торговли",
+                  "price": 700,
+                  "img": "http://1c.ru/static/images/logo.png",
+                  "key": "onecsell"
+                },
+                {
+                  "name": "Подключение к ОФД",
+                  "desc": "Избавим вас от лишних хлопот",
+                  "price": 3000,
+                  "img": "https://84.img.avito.st/640x480/4301061484.jpg",
+                  "key": "ofd"
+                },
+                {
+                  "name": "Техподдержка HelpMe",
+                  "desc": "Оперативно решим ваши проблемы",
+                  "price": 550,
+                  "img": "https://84.img.avito.st/640x480/4301061484.jpg",
+                  "key": "helpme"
+                }
+              ]
             }
           ]
         }

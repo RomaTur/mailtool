@@ -18,14 +18,14 @@ class Select extends React.Component<SelectProps, SelectState> {
   }
 
   componentDidMount() {
-    this.props.changeFunc(this.props.options.key, this.props.options.elements[0].key);
+    this.props.changeFunc(this.props.options.key, this.props.options.elements[0].key, this.props.options.target);
   }
 
   setVal(e: any) {
     this.setState({
       value: e.target.value
     });
-    this.props.changeFunc(this.props.options.key, e.target.value);
+    this.props.changeFunc(this.props.options.key, e.target.value, this.props.options.target);
   }
 
   render() {

@@ -611,45 +611,47 @@ class Templates extends React.Component<{}, TemplatesState> {
   }
 
   componentDidMount() {
-    // здесь нужно будет подгружать с сервера json
-    // this.setState({
-    //   templates: templates.templates
-    // });
-    // const templates = require('../../templates.json');
-    if (window.location.hostname === 'localhost') {
-      fetch('http://localhost:3004/templates')
-                    .then((response: any) => {
-                      return response.json();
-                    }).then((data: any) => {
-                      this.setState({
-                        templates: data.templates
-                      });
-                      return data;
-                    }).catch(() => {
-                      swal({
-                        title: 'Не подгрузились данные!',
-                        icon: 'error',
-                        timer: 2000
-                      });
-                    });
-    } else {
-      fetch('/templates')
-        .then((response: any) => {
-          return response.json();
-        }).then((data: any) => {
-          this.setState({
-            templates: data.templates
+   this.fetchTemplates();
+  }
+
+  fetchTemplates() {
+      if (window.location.hostname === 'localhost') {
+        fetch('http://localhost:3004/templates')
+          .then((response: any) => {
+            return response.json();
+          }).then((data: any) => {
+            this.setState({
+              templates: data.templates
+            });
+            return data;
+          }).catch(() => {
+            swal({
+              title: 'Не подгрузились данные!',
+              icon: 'error',
+              timer: 10000
+            }).then(() => {
+              this.fetchTemplates();
+            });
           });
-          return data;
-        }).catch(() => {
-          swal({
-            title: 'Не подгрузились данные!',
-            icon: 'error',
-            timer: 2000
+      } else {
+        fetch('/templates')
+          .then((response: any) => {
+            return response.json();
+          }).then((data: any) => {
+            this.setState({
+              templates: data.templates
+            });
+            return data;
+          }).catch(() => {
+            swal({
+              title: 'Не подгрузились данные!',
+              icon: 'error',
+              timer: 10000
+            }).then(() => {
+              this.fetchTemplates();
+            });
           });
-        });
-    }
-    
+      }
   }
 
   render() {
@@ -667,9 +669,7 @@ class Templates extends React.Component<{}, TemplatesState> {
           templateHtml={tpl}
         />);
     }
-    if (templatesPreviewArr === []) {
-      templatesPreviewArr = <div className='template__preview-link'>Не подгрузились шаблоны</div>;
-    }
+
     return (
       <div className='templates'>
         <Link to='./' className='templates__back'>

@@ -161,6 +161,11 @@ class Template extends React.Component<TemplateProps, TemplateState> {
             });
           }
           newObj = this.changeEmpty(newObj, targetArr);
+          newObj.elements.forEach((e: any) => {
+            if (e.type === 'select') {
+              e.target = newObj.key;
+            }
+          });
           element.elements.push(newObj);
         }
         return element;
@@ -180,11 +185,11 @@ class Template extends React.Component<TemplateProps, TemplateState> {
   }
 
   // функция, которая передается в каждый компонент формы и добавляет или меняет значение ключа !важно понять!
-  setter(key: string, value: any) {
+  setter(key: string, value: any, arr: boolean) {
     let tt = this.state.params;
     let tempArr: any = [];
     tt.options.forEach((element: any) => {
-      element = this.reverse(element, key, value);
+      element = this.reverse(element, key, value, arr);
       tempArr.push(element);
     });
     tt.options = tempArr;
@@ -194,13 +199,51 @@ class Template extends React.Component<TemplateProps, TemplateState> {
   }
 
   // рекурсия
-  reverse(element: any, key: string, value: string) {
+  reverse(element: any, key: string, value: string, arr: any) {
     let param: any;
     // если массив, то проходимся рекурсивно по всем элементам
     if (element.type === 'array') {
       let arrayPush: any = [];
       element.elements.forEach((elem: any) => {
-        const elemInside: any = this.reverse(elem, key, value) || null;
+        let elemInside: any;
+        elemInside = this.reverse(elem, key, value, arr) || null;
+        if (elem.key === arr) {
+          // console.log(elem, arr);
+          elem.elements.forEach((elele: any) => {
+            for (const param in elele) {
+              if (elele.hasOwnProperty(param)) {
+                if (elele.type === 'select' && elele.target) {
+                  elem.name = elele.value;
+                }
+              }
+            }
+          });
+          elem.elements.forEach((elele: any) => {
+            for (const param in elele) {
+              if (elele.hasOwnProperty(param)) {
+                this.state.params.options[this.state.params.options.length - 1].elements.forEach((e: any) => {
+                  if (e.key === elem.name) {
+                    if (elele.elem === 'productdesc') {
+                      elele.value = e.desc;
+                    }
+                    if (elele.elem === 'img') {
+                      elele.value = e.img;
+                    }
+                    if (elele.elem === 'price') {
+                      elele.value = e.price;
+                    }
+                    if (elele.elem === 'count') {
+                      elele.value = 1;
+                    }
+                    if (elele.elem === 'month') {
+                      elele.value = e.month;
+                    }
+                  }
+                });
+              }
+            }
+          });
+        }
         arrayPush.push(
           elemInside
         );
