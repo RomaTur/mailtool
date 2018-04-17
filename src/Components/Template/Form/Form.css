@@ -58,7 +58,7 @@
       padding: 5px 10px;
       font-size: 0.9rem;
       resize: none;
-      height: 50px;
+      height: 100px;
       outline: none; }
       .form__textarea-input:focus {
         border: 1px solid #9CE; }

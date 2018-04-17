@@ -223,6 +223,8 @@ class Template extends React.Component<TemplateProps, TemplateState> {
               if (elele.hasOwnProperty(param)) {
                 this.state.params.options[this.state.params.options.length - 1].elements.forEach((e: any) => {
                   if (e.key === elem.name) {
+                    elem.namerus = e.name;
+                    elem.img = e.img;
                     if (elele.elem === 'productdesc') {
                       elele.value = e.desc;
                     }
@@ -237,6 +239,11 @@ class Template extends React.Component<TemplateProps, TemplateState> {
                     }
                     if (elele.elem === 'month') {
                       elele.value = e.month;
+                      if (elele.value === true) {
+                        elem.month = elem.inMonth;
+                      } else {
+                        elem.month = '';
+                      }
                     }
                   }
                 });
@@ -441,7 +448,7 @@ class Template extends React.Component<TemplateProps, TemplateState> {
   render() {
     return (
       <div className='template'>
-        <Link to='./templates' className='template__back'>
+        <Link to='./' className='template__back'>
           <img src={arrow} className='template__back-arrow'/>
           <span className='template__back-text'>Назад</span>
         </Link>

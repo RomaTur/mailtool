@@ -2,243 +2,8 @@
   "templates": [
         {
           "key": "template1",
-          "title": "Список чего-нибудь",
-          "description": "Список чего-нибудь из чего можно составить таблицу.",
-          "templateHtml": "",
-          "searchElem": ["client", "subject", "email", "products", "author"],
-          "options": [
-            {
-              "type": "input",
-              "name": "Кому",
-              "key": "client",
-              "elem": "client",
-              "value": "",
-              "placeholder": "Дмитрий Николаевич"
-            },
-            {
-              "type": "input",
-              "name": "Тема",
-              "key": "subject",
-              "elem": "subject",
-              "value": "",
-              "placeholder": "Тема"
-            },
-            {
-              "type": "input",
-              "name": "Email",
-              "key": "email",
-              "elem": "email",
-              "value": "",
-              "placeholder": "petrov@lad24.ru"
-            },
-            {
-              "type": "array",
-              "name": "things",
-              "key": "template1__products",
-              "elem": "products",
-              "remove": true,
-              "title": "Товары",
-              "elements": [
-                {
-                  "type": "array",
-                  "name": "something",
-                  "key": "product",
-                  "remove": true,
-                  "elements": [
-                    {
-                      "type": "button",
-                      "name": "Добавить товар",
-                      "key": "addSomething",
-                      "target": "template1__products",
-                      "action": "add"
-                    },
-                    {
-                      "type": "input",
-                      "name": "Наименование",
-                      "key": "product1",
-                      "value": "",
-                      "elem": "title",
-                      "placeholder": "Эвотор"
-                    },
-                    {
-                      "type": "textarea",
-                      "name": "Описание",
-                      "elem": "desc",
-                      "key": "product1DescAnother",
-                      "value": ""
-                    },
-                    {
-                      "type": "input",
-                      "name": "Цена",
-                      "key": "price",
-                      "elem": "price",
-                      "value": "",
-                      "placeholder": "999"
-                    },
-                    {
-                      "type": "input",
-                      "name": "Кол-во",
-                      "key": "count",
-                      "elem": "count",
-                      "value": "1",
-                      "placeholder": "1"
-                    },
-                    {
-                      "type": "input",
-                      "name": "img",
-                      "key": "product1Img",
-                      "value": "https://nizhniy.kkm.ru/upload/iblock/e0a/b2009b8a-9148-11e6-80cb-005056867087_eff7f7da-88cb-11e7-80e1-005056867087.jpeg",
-                      "elem": "img"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "array",
-              "name": "author",
-              "key": "author",
-              "elem": "author",
-              "title": "Отправитель",
-              "elements": [
-                {
-                  "type": "input",
-                  "name": "Имя",
-                  "key": "authorName",
-                  "elem": "authorName",
-                  "value": "",
-                  "placeholder": "Хабибулина Зульфия"
-                },
-                {
-                  "type": "input",
-                  "name": "Телефон",
-                  "key": "authorTel",
-                  "elem": "authorTel",
-                  "value": "",
-                  "placeholder": "+7 904 056 87 78"
-                },
-                {
-                  "type": "input",
-                  "name": "Email",
-                  "key": "authorEmail",
-                  "elem": "authorEmail",
-                  "value": "",
-                  "placeholder": "habizulf@lad24.ru"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "key": "template2",
-          "title": "Test",
-          "description": "Test",
-          "options": [ 
-            {
-              "type": "input",
-              "name": "Название",
-              "key": "title",
-              "value": ""
-            },
-            {
-              "type": "textarea",
-              "name": "Описание",
-              "key": "desc",
-              "value": ""
-            },
-            {
-              "type": "button",
-              "name": "Добавить",
-              "key": "addproduct",
-              "target": "products",
-              "action": "add"
-            },
-            {
-              "type": "array",
-              "name": "Товары",
-              "key": "products",
-              "remove": true,
-              "elements": [
-                {
-                  "type": "array",
-                  "name": "Товар",
-                  "key": "product",
-                  "remove": true,
-                  "elements": [
-                    {
-                      "type": "input",
-                      "name": "Наименование",
-                      "key": "product1Name",
-                      "value": ""
-                    },
-                    {
-                      "type": "array",
-                      "name": "Описание",
-                      "key": "product1Desc",
-                      "remove": true,
-                      "elements": [
-                        {
-                          "type": "array",
-                          "name": "product123Desc",
-                          "key": "product123Desc",
-                          "class": "list",
-                          "remove": true,
-                          "elements": [
-                            {
-                              "type": "button",
-                              "name": "Добавить",
-                              "key": "addSomething",
-                              "target": "product1Desc",
-                              "action": "add"
-                            },
-                            {
-                              "type": "select",
-                              "name": "Опция",
-                              "key": "product1DescSelect",
-                              "value": "",
-                              "elements": [
-                                {
-                                  "name": "Первая опция",
-                                  "key": "product1DescSelectOption1"
-                                },
-                                {
-                                  "name": "Вторая опция",
-                                  "key": "product1DescSelectOption2"
-                                },
-                                {
-                                  "name": "Третья опция",
-                                  "key": "product1DescSelectOption3"
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "type": "input",
-                      "name": "Цена",
-                      "key": "product1Price",
-                      "value": ""
-                    },
-                    {
-                      "type": "input",
-                      "name": "Кол-во",
-                      "key": "product1Count",
-                      "value": ""
-                    }
-                  ]
-                }
-              ]
-            }
-          ],
-          "templateHTML": "" 
-        },
-        {
-          "key": "template3",
           "title": "Коммерческое предложение",
           "description": "Сделать шаблон для для коммерческого предложения",
-          "templateHtml": "",
           "options": [
             {
               "type": "input",
@@ -268,6 +33,7 @@
               "type": "array",
               "name": "Продукты",
               "key": "products",
+              "elem": "products",
               "title": "Товары",
               "remove": true,
               "elements": [
@@ -276,6 +42,7 @@
                   "name": "product",
                   "key": "product",
                   "class": "",
+                  "inMonth": "в мес",
                   "remove": true,
                   "elements": [
                     {
@@ -380,6 +147,13 @@
                       "elem": "count",
                       "value": "1",
                       "placeholder": "1"
+                    },
+                    {
+                      "type": "check",
+                      "name": "Цена в месяц",
+                      "key": "month",
+                      "elem": "month",
+                      "value": true
                     }
                   ]
                 }
@@ -406,7 +180,7 @@
                   "key": "authorTel",
                   "elem": "authorTel",
                   "value": "",
-                  "placeholder": "+7 904 056 87 78"
+                  "placeholder": "+79040568778"
                 },
                 {
                   "type": "input",
@@ -415,6 +189,14 @@
                   "elem": "authorEmail",
                   "value": "",
                   "placeholder": "habizulf@lad24.ru"
+                },
+                {
+                  "type": "input",
+                  "name": "Промо-код",
+                  "key": "authorPromo",
+                  "elem": "authorPromo",
+                  "value": "",
+                  "placeholder": "EVO4567"
                 }
               ]
             },
@@ -424,8 +206,9 @@
               "elements": [
                 {
                   "name": "Эвотор 7.2",
-                  "desc": "Это пример довольно таки длинного комментария. Из-за того, что он такой длинный, он занимает много места, но иногда это даже хорошо. Тут менеджер может подробно описать преимущества какого-либо дувайса, исходя из ситуации",
+                  "desc": "Это пример довольно таки длинного комментария. Из-за того, что он такой длинный, он занимает много места, но иногда это даже хорошо. Тут менеджер может подробно описать преимущества какого-либо девайса, исходя из ситуации",
                   "price": 18490,
+                  "month": false,
                   "img": "https://nizhniy.kkm.ru/upload/iblock/e0a/b2009b8a-9148-11e6-80cb-005056867087_eff7f7da-88cb-11e7-80e1-005056867087.jpeg",
                   "key": "evotor"
                 },
@@ -433,6 +216,7 @@
                   "name": "Весы ШТРИХ-Слим 300М 15-2,5 Д1Н",
                   "desc": "По-швейцарски точные, по-немецки надежные",
                   "price": 8500,
+                  "month": false,
                   "img": "https://www.shtrih-m.ru/upload/iblock/e64/shtrih_slim.jpg",
                   "key": "weightslim"
                 },
@@ -440,6 +224,7 @@
                   "name": "Драйвер для весов серии ШТРИХ-Слим",
                   "desc": "",
                   "price": 1000,
+                  "month": false,
                   "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoQq4DurnKlugfZq4eW-0IASM6p_39_ODf3Oc-uM0QbwAdtQr4pw",
                   "key": "driverweightslim"
                 },
@@ -447,6 +232,7 @@
                   "name": "Переходгик для весов CAS",
                   "desc": "",
                   "price": 300,
+                  "month": false,
                   "img": "https://kkt365.ru/storage/app/media/products/cropped-images/adapter-com-0-0-0-0-1506326204.png",
                   "key": "cabelweightslim"
                 },
@@ -454,6 +240,7 @@
                   "name": "Дисплей покупателя",
                   "desc": "Повышает доверие покупателей, ускоряет процесс торговли",
                   "price": 3300,
+                  "month": false,
                   "img": "http://экма-сервис.рф/wp-content/uploads/2016/09/stoyka_01-300x212.jpg",
                   "key": "clientdisplay"
                 },
@@ -461,6 +248,7 @@
                   "name": "Драйвер для дисплея покупателя",
                   "desc": "",
                   "price": 1000,
+                  "month": false,
                   "img": "https://avatars1.githubusercontent.com/u/26476232?s=88&v=4",
                   "key": "clientdisplaydriver"
                 },
@@ -469,12 +257,14 @@
                   "desc": "Учет и оптимизация розничной торговли",
                   "price": 700,
                   "img": "http://1c.ru/static/images/logo.png",
+                  "month": true, 
                   "key": "onecsell"
                 },
                 {
                   "name": "Подключение к ОФД",
                   "desc": "Избавим вас от лишних хлопот",
                   "price": 3000,
+                  "month": false,
                   "img": "https://84.img.avito.st/640x480/4301061484.jpg",
                   "key": "ofd"
                 },
@@ -482,12 +272,14 @@
                   "name": "Техподдержка HelpMe",
                   "desc": "Оперативно решим ваши проблемы",
                   "price": 550,
+                  "month": true,
                   "img": "https://84.img.avito.st/640x480/4301061484.jpg",
                   "key": "helpme"
                 }
               ]
             }
-          ]
+          ],
+          "templateHtml": ""
         }
       ]
 }

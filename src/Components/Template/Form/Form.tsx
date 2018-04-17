@@ -3,6 +3,7 @@ import Input from './Input/Input';
 import TextArea from './TextArea/TextArea';
 import Select from './Select/Select';
 import Button from './Button/Button';
+// import Check from './Check/Check';
 import './Form.css';
 
 interface FormProps {
@@ -53,6 +54,10 @@ class Form extends React.Component<FormProps, {}> {
           let button = <Button options={element} key={element.key} clickAction={this.props.clickAction.bind(this)} />;
           return button; // возвращаем компонент
         }
+        // if (element[param] === 'check') {
+        //  let check = <Check options={element} key={element.key} changeFunc={this.props.changeFunc.bind(this)} />;
+        //  return check; // возвращаем компонент
+        // }
       }
     }
     return null; // в ином случае беда

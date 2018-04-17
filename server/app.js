@@ -7,6 +7,8 @@ var logger = require('morgan');
 var bodyParser = require('body-parser')
 const request = require('request');
 const templates = require('./templates.json');
+// const JSON5 = require('json5');
+
 var app = express();
 
 app.use(logger('dev'));
