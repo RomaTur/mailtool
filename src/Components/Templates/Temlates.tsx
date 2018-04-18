@@ -674,7 +674,7 @@ a.es-button {
                                                             <tbody>
                                                                 <tr>
                                                                     <td class="es-m-p0r es-m-p20b esd-container-frame" 
-                                                                    width="132" align="center">
+                                                                    width="132" height="70" align="center">
                                                                         <table cellspacing="0" 
                                                                         cellpadding="0" width="100%">
                                                                             <tbody>
@@ -684,7 +684,7 @@ a.es-button {
                     align="center">
                        <a 
                        target="_blank"> <img class="adapt-img" 
-  src="https://demo.stripo.email/content/guids/7815493f-1acd-47ee-9c14-9b4365bfe6e6/images/28481523969731566.png" 
+  src="https://image.ibb.co/jhTEe7/Group_1.png" 
                        alt="LAD" style="display: block;" title="LAD" height="27"> </a>
                                                                                     </td>
                                                                                 </tr>
@@ -725,7 +725,7 @@ a.es-button {
                                                             <tbody>
                                                                 <tr>
                                                                     <td class="esd-container-frame"
-                                                                     width="144" align="center">
+                                                                     width="144" height="70px" align="center">
                                                                         <table cellspacing="0" cellpadding="0"
                                                                          width="100%">
                                                                             <tbody>
@@ -751,18 +751,18 @@ a.es-button {
                                                         <!--[if mso]><table width="600" cellpadding="0" 
                             cellspacing="0"><tr><td width="199" valign="top"><![endif]-->
                                                         <table cellpadding="0" cellspacing="0" 
-                                                        
+                                                        style="background-color: rgb(80, 86, 127);"
                                                         class="es-left" align="left">
                                                             <tbody>
                                                                 <tr>
                                                                     <td width="199" 
                                            class="es-m-p0r es-m-p20b esd-container-frame" align="center">
-                                                                        <table cellpadding="0" 
-                                                                        cellspacing="0" width="100%">
+                                    <table cellpadding="0" 
+                                                                        cellspacing="0" width="60%" height="80">
                                                                             <tbody>
                                                                                 <tr>
-                                         <td align="center" class="esd-block-text es-p10t es-p5b es-p30r es-p30l">
-                                      <p style="font-size: 16px; color: rgb(255, 255, 255);">Онлайн-касса под 54-ФЗ</p>
+<td align="center" class="esd-block-text es-p10t es-p5b es-p30r es-p30l">
+<p style="font-size: 16px; color: rgb(255, 255, 255);">Онлайн-касса под 54-ФЗ</p>
                                                                                     </td>
                                                                                 </tr>
                                                                             </tbody>
@@ -773,15 +773,16 @@ a.es-button {
                                                         </table>
                                                         <!--[if mso]></td><td width="199" valign="top"><![endif]-->
                                                         <table cellpadding="0" 
-                                                        cellspacing="0" class="es-left" align="left">
+                    cellspacing="0" style="background-color: rgb(60, 66, 107)" class="es-left" align="left">
                                                             <tbody>
                                                                 <tr>
                                                                     <td width="199" 
                                                 class="es-m-p20b esd-container-frame" align="center">
-                                        <table cellpadding="0" cellspacing="0" width="100%">
+     <table cellpadding="0" cellspacing="0" width="90%" height="80">
                                                                             <tbody>
                                                                                 <tr>
-                                    <td align="center" class="esd-block-text es-p10t es-p10b es-p10r es-p10l">
+                                    <td 
+                                     align="center" class="esd-block-text es-p10t es-p10b es-p10r es-p10l">
                                      <p style="color: #ffffff; font-size: 16px;">Кабинет для управления бизнесом</p>
                                                                                     </td>
                                                                                 </tr>
@@ -796,11 +797,11 @@ a.es-button {
                                                             <tbody>
                                                                 <tr>
                           <td width="202" align="center" class="esd-container-frame">
-                                    <table cellpadding="0" cellspacing="0" width="100%">
+                                    <table cellpadding="0" cellspacing="0" width="100%" height="80">
                                                                             <tbody>
                                                                                 <tr>
                                           <td align="center" class="esd-block-text es-p10t es-p20r es-p30l">
-                                        <p style="font-size: 16px; color: rgb(255, 255, 255);">Магазин приложений</p>
+     <p style="font-size: 16px; color: rgb(255, 255, 255); background-color: rgb(54, 59, 92);">Магазин приложений</p>
                                                                                     </td>
                                                                                 </tr>
                                                                             </tbody>
@@ -818,13 +819,13 @@ a.es-button {
                                                             <tbody>
                                                                 <tr>
                     <td width="600" class="esd-container-frame" align="center" valign="top">
-                        <table cellpadding="0" cellspacing="0" width="100%">
+                        <table cellpadding="0" cellspacing="0" width="80%">
                             <tbody>
                                 <tr>
                                     <td align="left" class="esd-block-text es-p30t es-p40b es-p30r es-p40l">
                                         <p>Здравствуйете!</p>
-<p>'name', прошу вас обратить внимание на наше коммерческое предложение. 
-Оно должно идеально подойти для вашей фермерской лавки.</p>
+<p><%=options[0].value%>, прошу вас обратить внимание на наше коммерческое предложение. 
+<%=options[3].value%></p>
                                                                                     </td>
                                                                                 </tr>
                                                                             </tbody>
@@ -835,6 +836,7 @@ a.es-button {
                                                         </table>
                                                     </td>
                                                 </tr>
+                                                <% _.forEach(options[4].elements, function(product){ %>
                                                 <tr>
                                                     <td class="esd-structure" align="left">
                                                         <!--[if mso]><table width="600" cellpadding="0" 
@@ -843,12 +845,12 @@ a.es-button {
                                                             <tbody>
                                                                 <tr>
                             <td width="102" class="es-m-p0r es-m-p20b esd-container-frame" align="center">
-                        <table cellpadding="0" cellspacing="0" width="100%">
+                        <table cellpadding="0" cellspacing="0" width="100%" height="80">
                                                                             <tbody>
                                                                                 <tr>
                         <td align="center" class="esd-block-image es-p20t es-p15b es-p15l">
   <a target="_blank"> <img class="adapt-img" 
-  src="https://demo.stripo.email/content/guids/7815493f-1acd-47ee-9c14-9b4365bfe6e6/images/32961523971247955.png" 
+  src="<%=product.img%>" 
   alt="" style="display: block;" width="40"> </a>
                                                                                     </td>
                                                                                 </tr>
@@ -867,11 +869,8 @@ a.es-button {
                     <tbody>
                         <tr>
                             <td align="left" class="esd-block-text es-p15t">
-                                <p style="font-size: 14px;">Эвотор 7.2</p>
-<p style="font-size: 12px; color: #808080;">Это пример довольно таки длинного комментария. 
-Из-за того, что он такой длинный, 
-он занимает много места, но иногда это даже хорошо. Тут менеджер может подробно описать 
-преимущества какого-либо дувайса, исходя из ситуации</p>
+                                <p style="font-size: 14px;"><%=product.namerus%></p>
+<p style="font-size: 12px; color: #808080;"><%=product.elements[2].value%></p>
                             </td>
                         </tr>
                     </tbody>
@@ -880,16 +879,19 @@ a.es-button {
         </tr>
     </tbody>
 </table>
-<!--[if mso]></td><td width="0"></td><td width="178" valign="top"><![endif]-->
+<!--[if mso]></td><td width="0"></td><td width="178" valign="center"><![endif]-->
 <table cellpadding="0" cellspacing="0" class="es-right" align="right">
     <tbody>
         <tr>
             <td width="178" align="center" class="esd-container-frame">
-                <table cellpadding="0" cellspacing="0" width="100%">
+                <table cellpadding="0" cellspacing="0" width="100%" height="80">
                                                                             <tbody>
                                                                                 <tr>
       <td align="left" class="esd-block-text es-p25t es-p25b es-p30l">
-      <p>1 x 18 490 - <span style="color:#808080;">в мес.</span></p>
+      <p style="padding-left: 35px; font-size: 14px; color:#808080;">
+      <%=product.elements[4].value%> x <span style="color: #000000;">
+      <%=product.elements[3].value%></span> - <span style="color:#808080; font-size: 12px">
+      <%=product.month%></span></p>
                                                                                     </td>
                                                                                 </tr>
                                                                             </tbody>
@@ -911,10 +913,10 @@ a.es-button {
                                                                             <tbody>
                                                                                 <tr>
           <td align="center" class="esd-block-spacer es-p20t es-p5b es-p40r es-p40l">
-                     <table border="0" width="100%" height="100%" cellpadding="0" cellspacing="0">
+                     <table border="0" width="80%" height="100%" cellpadding="0" cellspacing="0">
                                                                                             <tbody>
                                                                                                 <tr>
-<td style="border-bottom: 1px solid #cccccc; background:none; height:1px; width:100%; margin:0px 0px 0px 0px;"></td>
+<td style="border-bottom: 1px solid #cccccc; background:none; height:1px; width:90%; margin:0px 0px 0px 0px;"></td>
                                                                                                 </tr>
                                                                                             </tbody>
                                                                                         </table>
@@ -928,6 +930,7 @@ a.es-button {
                                                         </table>
                                                     </td>
                                                 </tr>
+                                                <% }); %>
                                                 <tr>
                                                     <td class="esd-structure" align="left">
                                                         <table cellpadding="0" cellspacing="0" width="100%">
@@ -938,8 +941,9 @@ a.es-button {
                                                                             <tbody>
                                                                                 <tr>
                         <td align="right" class="esd-block-text es-p35b es-p40r">
-<p><span style="color:#808080;">Итого:&nbsp;</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-&nbsp; &nbsp; &nbsp; 46 640.-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
+<p style="font-size: 16px; padding-right: 20px;">
+<span style="color:#808080;">Итого:&nbsp;</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; <%=totalPrice%>.-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
                                                                                     </td>
                                                                                 </tr>
                                                                             </tbody>
@@ -959,8 +963,9 @@ a.es-button {
               <table cellpadding="0" cellspacing="0" width="100%">
                                                                             <tbody>
                                                                                 <tr>
-            <td align="center" class="esd-block-text es-p20t es-p15b" bgcolor="linear-gradient(90deg, #363B5C -1.5%, 
-              #B03253 17.57%, #D14343 34.95%, #B83253 67.48%, #3B3B5C 100%), #FF5151;">
+            <td align="center" class="esd-block-text es-p20t es-p15b" 
+style
+="background:linear-gradient(90deg,#3B3B5C -1.5%,#B03253 17.57%,#D14343 34.95%,#B83253 67.48%,#3B3B5C 100%),#FF5151;">
 <p style="font-size: 16px; color: rgb(255, 255, 255);">Купите в рассрочку 0-0-6 или получите сертификат на 5000. -</p>
                                                                                     </td>
                                                                                 </tr>
@@ -984,11 +989,14 @@ a.es-button {
                                                                             <tbody>
                                                                                 <tr>
             <td align="left" class="esd-block-text es-p30t es-p10b es-p40l">
-                              <p style="line-height: 200%;">Хабибулина Зульфия</p>
-    <p style="line-height: 200%;"><a target="_blank" style="line-height: 200%;" 
-    href="tel:89040568778"><span style="color:#696969;">+7 904 056 87 78</span> 
-    </a><a target="_blank" style="line-height: 200%; color: #0099ff;" 
-    href="mailto:habizulf@lad24.ru">habizulf@lad24.ru</a><span style="color:#0099ff;"></span></p>
+                              <p style="line-height: 220%; padding-left: 40px;"><%=options[5].elements[0].value%></p>
+    <p style="line-height: 100%;  padding-left: 40px;"><a target="_blank" 
+    style="line-height: 130%; text-decoration: none;" font-size="16px" 
+    href="tel:<%=options[5].elements[1].value%>"><span style="color:#696969;"><%=options[5].elements[1].value%></span> 
+    </a></p><p style="line-height: 100%;  padding-left: 40px;">
+    <a target="_blank" style="line-height: 100%; color: #0099ff;" 
+    href="mailto:<%=options[5].elements[2].value%>">
+    <%=options[5].elements[2].value%></a><span style="color:#0099ff;"></span></p>
                                                                                     </td>
                                                                                 </tr>
                                                                             </tbody>
@@ -1012,11 +1020,13 @@ a.es-button {
                         </tr>
                         <tr>
                             <td align="left" class="esd-block-text es-p40t">
-                                <p style="line-height: 200%;"><a target="_blank" style="line-height: 200%; 
-                                color: #696969;" href="tel:88007758525">8 800 775 85 25</a><span 
-                                style="color:#696969;"></span>&nbsp;<span style="color: #696969; 
-                                font-size: 12px;">, доб.</span>&nbsp;3553</p>
-                                <p style="line-height: 200%;"><a target="_blank" style="line-height: 200%; 
+                                <p style="line-height: 100%;"><a target="_blank" 
+                                style="line-height: 100%; text-decoration: none; 
+                                color:#393949; font-size: 14px;" href="tel:88007758525">8 800 775 85 25</a><span 
+                                style="color:#393949;"></span>&nbsp;<span style="color: #696969; 
+                                font-size: 12px;">, доб.</span>&nbsp;
+                                <span style="font-size: 14px; color:#393949;">3553</span></p>
+            <p style="line-height: 100%;"><a target="_blank" style="line-height: 100%; 
                                 color: #0099ff;" href="http://kkt365.ru">www.kkt365.ru</a><span 
                                 style="color:#0099ff;"></span></p>
                                                                                     </td>
@@ -1032,12 +1042,12 @@ a.es-button {
                                                             <tbody>
                                                                 <tr>
                 <td width="186" align="center" class="esd-container-frame">
-                          <table cellpadding="0" cellspacing="0" width="100%">
+                          <table cellpadding="0" cellspacing="0" width="100%" height="150">
                                                                             <tbody>
                                                                                 <tr>
                           <td align="left" class="esd-block-image es-p40t">
 <a target="_blank"> <img class="adapt-img" 
-src="https://demo.stripo.email/content/guids/7815493f-1acd-47ee-9c14-9b4365bfe6e6/images/5861523972502015.png" 
+src="https://image.ibb.co/kvskmn/Group_2.png" 
 alt="" style="display: block;" width="146"> </a>
                                                                                     </td>
                                                                                 </tr>
@@ -1054,15 +1064,30 @@ alt="" style="display: block;" width="146"> </a>
                                                     <td class="esd-structure es-p10r es-p25l" align="left">
                                                         <!--[if mso]><table width="565" cellpadding="0" 
                             cellspacing="0"><tr><td width="366" valign="top"><![endif]-->
-<table cellpadding="0" cellspacing="0" class="es-left" align="left">
+<table cellpadding="0" cellspacing="0" class="es-left" align="left" style="margin-bottom:30px">
     <tbody>
         <tr>
             <td width="366" class="es-m-p0r es-m-p20b esd-container-frame" valign="top" align="center">
-                <table cellpadding="0" cellspacing="0" width="100%">
+                <table cellpadding="0" cellspacing="0" width="100%" style="padding-left: 20px">
                     <tbody>
                         <tr>
                             <td align="left" class="esd-block-text es-p5t es-p5b es-p40r es-p15l" bgcolor="#ededed">
-<p>Используйте промокод «<span style="color:#FF0000;">EVO4567</span>» и получите 1500 рублей при покупке кассы!</p>
+                            <table cellpadding="0" cellspacing="0" width="100%" style="padding-left: 20px">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                        <p>Используйте промокод «<span 
+style="color:#FF0000;"><%=options[5].elements[3].value%></span>» и получите 1500 рублей при покупке кассы!</p>
+                                        </td>
+                                        <td style="padding-left: 5px; padding-right: 10px;">
+                                        <a 
+                       target="_blank" href="http://kkt365.ru"> <img class="adapt-img" 
+  src="https://image.ibb.co/b1vhXS/arrow.png"
+                       alt="LAD" style="display: block;" title="link" height="30" width="30"> </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                             </td>
                         </tr>
                     </tbody>
@@ -1081,7 +1106,7 @@ alt="" style="display: block;" width="146"> </a>
                         <tr>
                             <td align="left" class="esd-block-image es-p5t es-p5b es-p10l">
   <a target="_blank"> <img class="adapt-img" 
-  src="https://demo.stripo.email/content/guids/7815493f-1acd-47ee-9c14-9b4365bfe6e6/images/1711523972647936.png" 
+  src="https://image.ibb.co/hxcJ6n/Group_2_1.png" 
   alt="" style="display: block;" height="43"> </a>
                                                                                     </td>
                                                                                 </tr>

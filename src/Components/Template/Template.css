@@ -50,6 +50,7 @@
   display: flex; }
 
 .template__preview-open {
+  cursor: pointer;
   width: 90px;
   height: 110px;
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -60,6 +61,12 @@
   margin-right: 20px; }
   .template__preview-open:hover {
     box-shadow: 0 1px 5px 0px rgba(0, 0, 0, 0.4); }
+
+.template__preview-prev {
+  font-size: 14px;
+  margin: 45px auto;
+  font-family: monospace;
+  cursor: pointer; }
 
 .template__preview-block {
   background-color: #DDD;

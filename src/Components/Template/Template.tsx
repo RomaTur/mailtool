@@ -208,7 +208,6 @@ class Template extends React.Component<TemplateProps, TemplateState> {
         let elemInside: any;
         elemInside = this.reverse(elem, key, value, arr) || null;
         if (elem.key === arr) {
-          // console.log(elem, arr);
           elem.elements.forEach((elele: any) => {
             for (const param in elele) {
               if (elele.hasOwnProperty(param)) {
@@ -241,8 +240,18 @@ class Template extends React.Component<TemplateProps, TemplateState> {
                       elele.value = e.month;
                       if (elele.value === true) {
                         elem.month = elem.inMonth;
-                      } else {
-                        elem.month = '';
+                      }
+                    }
+                    if (elele.elem === 'year') {
+                      elele.value = e.year;
+                      if (elele.value === true) {
+                        elem.month = elem.inYear;
+                      }
+                    }
+                    if (elele.elem === 'kvartal') {
+                      elele.value = e.kvartal;
+                      if (elele.value === true) {
+                        elem.month = elem.inKvartal;
                       }
                     }
                   }
@@ -281,8 +290,8 @@ class Template extends React.Component<TemplateProps, TemplateState> {
                 subTotal = subTotal * elem.value;
               }
             });
+            total += subTotal;
           });
-          total += subTotal;
         }
       });
       return total;
@@ -377,7 +386,6 @@ class Template extends React.Component<TemplateProps, TemplateState> {
     this.state.params.options.forEach((element: any) => {
       if (isFilledInputs) {
         isFilledInputs = this.checkEmptyInput(element);
-        console.log(isFilledInputs);
       }
     });
     if (isFilledInputs) {
@@ -464,6 +472,7 @@ class Template extends React.Component<TemplateProps, TemplateState> {
               <div className='template__preview-block template__preview-block--two'/>
               <div className='template__preview-block template__preview-block--three'/>
               <div className='template__preview-block template__preview-block--four'/>
+              <div className='template__preview-prev'>Предосмотр</div>
             </div>
             <Modal
                 isOpen={this.state.modalIsOpen}

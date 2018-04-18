@@ -35,6 +35,10 @@
       "target": [
         "AppImage"
       ]
+    },
+    "win": {
+      "target": "squirrel",
+      "icon": "../public/favicon.ico"
     }
   },
   "author": "Roman Turusov <mr.romatur@gmail.com>",
