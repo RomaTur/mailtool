@@ -23,7 +23,7 @@
             },
             {
               "type": "input",
-              "name": "Email",
+              "name": "Email получателя",
               "key": "email",
               "elem": "email",
               "value": "",
@@ -42,6 +42,7 @@
               "key": "products",
               "elem": "products",
               "title": "Товары",
+              "class": "products",
               "remove": true,
               "elements": [
                 {
@@ -55,11 +56,7 @@
                   "remove": true,
                   "elements": [
                     {
-                      "type": "button",
-                      "name": "Добавить",
-                      "key": "addProduct",
-                      "target": "products",
-                      "action": "add"
+                      "type": "empty"
                     },
                     {
                       "type": "select",
@@ -616,6 +613,13 @@
                       "value": true
                     }
                   ]
+                },
+                {
+                  "type": "button",
+                  "name": "Добавить",
+                  "key": "addProduct",
+                  "target": "products",
+                  "action": "add"
                 }
               ]
             },
@@ -641,6 +645,14 @@
                   "elem": "authorTel",
                   "value": "",
                   "placeholder": "+79040568778"
+                },
+                {
+                  "type": "input",
+                  "name": "Добавочный",
+                  "key": "authorTelWork",
+                  "elem": "authorTelWork",
+                  "value": "",
+                  "placeholder": "3553"
                 },
                 {
                   "type": "input",

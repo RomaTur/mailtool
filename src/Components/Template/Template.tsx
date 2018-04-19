@@ -138,10 +138,13 @@ class Template extends React.Component<TemplateProps, TemplateState> {
         for (let i = 0; i < element.elements.length; i++) {
           if (element.elements[i].key === target) {
             index = i;
+            // console.log(element);
             element.elements.splice(index, 1);
-            return element;
+            // console.log(element);
+            // return element;
           }
         }
+        return element;
       }
       if (element.key === target) {
         if (action === 'add') {
@@ -166,7 +169,11 @@ class Template extends React.Component<TemplateProps, TemplateState> {
               e.target = newObj.key;
             }
           });
-          element.elements.push(newObj);
+          if (element.elements[element.elements.length - 1].type === 'button') {
+            element.elements.splice(element.elements.length - 1, 0, newObj); 
+          } else {  
+            element.elements.push(newObj);
+          }
         }
         return element;
       } else {
@@ -297,10 +304,11 @@ class Template extends React.Component<TemplateProps, TemplateState> {
       return total;
   }
 
-  renderHtml() {
-    let totalPrice = this.sumPrice(this.state.params.options, 'products');
-    const compiledTemplate: string = _.template(this.state.params.templateHtml)({
-      options: this.state.params.options,
+  renderHtml(temp: any) {
+    console.log(temp);
+    let totalPrice = this.sumPrice(temp.options, 'products');
+    const compiledTemplate: string = _.template(temp.templateHtml)({
+      options: temp.options,
       totalPrice: totalPrice
     });
     return compiledTemplate;
@@ -329,8 +337,21 @@ class Template extends React.Component<TemplateProps, TemplateState> {
           })
         });
       }
+      if (element.key === 'author') {
+        element.elements.forEach((e: any) => {
+          if (e.key === 'authorEmail') {
+            this.setState({
+              inputs: Object.assign(this.state.inputs, {
+                  [ e.key ]: e.value || 'email@email.net'
+              })
+            });
+          }
+        });
+      }
     });
-    const finalHtml: any = this.renderHtml();
+    let temp = _.cloneDeep(this.state.params);
+    temp.options[4].elements = temp.options[4].elements.splice(0, temp.options[4].elements.length - 1);
+    const finalHtml: any = this.renderHtml(temp);
     this.setState({
       previewHtml: finalHtml
     });
@@ -411,14 +432,31 @@ class Template extends React.Component<TemplateProps, TemplateState> {
             })
           });
         }
+        if (element.key === 'author') {
+          console.log(element);
+          element.elements.forEach((e: any) => {
+            console.log(e);
+            if (e.key === 'authorEmail') {
+              console.log(e);
+              this.setState({
+                inputs: Object.assign(this.state.inputs, {
+                    [ element.key ]: element.value || 'email@email.net'
+                })
+              });
+            }
+          });
+        }
       });
-      const finalHtml = this.renderHtml();
+      let temp = this.state.params;
+      temp.options[4].elements = temp.options[4].elements.splice(0, temp.options[4].elements.length - 1);
+      const finalHtml = this.renderHtml(temp);
       this.setState({
         previewHtml: finalHtml
       });
       const sendingObj = {
         to: this.state.inputs.email,
         subject: this.state.inputs.subject,
+        from: this.state.inputs.authorEmail,
         html: finalHtml
       };
       fetch(`${url}/maildata`,

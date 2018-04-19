@@ -995,8 +995,8 @@ style
     href="tel:<%=options[5].elements[1].value%>"><span style="color:#696969;"><%=options[5].elements[1].value%></span> 
     </a></p><p style="line-height: 100%;  padding-left: 40px;">
     <a target="_blank" style="line-height: 100%; color: #0099ff;" 
-    href="mailto:<%=options[5].elements[2].value%>">
-    <%=options[5].elements[2].value%></a><span style="color:#0099ff;"></span></p>
+    href="mailto:<%=options[5].elements[3].value%>">
+    <%=options[5].elements[3].value%></a><span style="color:#0099ff;"></span></p>
                                                                                     </td>
                                                                                 </tr>
                                                                             </tbody>
@@ -1025,7 +1025,7 @@ style
                                 color:#393949; font-size: 14px;" href="tel:88007758525">8 800 775 85 25</a><span 
                                 style="color:#393949;"></span>&nbsp;<span style="color: #696969; 
                                 font-size: 12px;">, доб.</span>&nbsp;
-                                <span style="font-size: 14px; color:#393949;">3553</span></p>
+              <span style="font-size: 14px; color:#393949;"><%=options[5].elements[2].value%></span></p>
             <p style="line-height: 100%;"><a target="_blank" style="line-height: 100%; 
                                 color: #0099ff;" href="http://kkt365.ru">www.kkt365.ru</a><span 
                                 style="color:#0099ff;"></span></p>
@@ -1077,7 +1077,7 @@ alt="" style="display: block;" width="146"> </a>
                                     <tr>
                                         <td>
                                         <p>Используйте промокод «<span 
-style="color:#FF0000;"><%=options[5].elements[3].value%></span>» и получите 1500 рублей при покупке кассы!</p>
+style="color:#FF0000;"><%=options[5].elements[4].value%></span>» и получите 1500 рублей при покупке кассы!</p>
                                         </td>
                                         <td style="padding-left: 5px; padding-right: 10px;">
                                         <a 

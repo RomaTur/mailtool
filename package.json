@@ -1,7 +1,7 @@
 {
   "name": "electron-easy-start",
   "version": "1.0.0",
-  "description": "Electron Starter Kit",
+  "description": "MailTool",
   "main": "electron_process.js",
   "homepage": "./",
   "scripts": {
@@ -18,7 +18,8 @@
     "electron": "electron ./build",
     "dist": "build",
     "gulp": "gulp build",
-    "start-electron": "npm-run-all -p start electron-dev"
+    "start-electron": "npm-run-all -p start electron-dev",
+    "package-win": "electron-packager . myApp --platform=win32 --arch=x64 --version=0.33.3 --app-version=0.1.0 --out=dist --ignore=dist --prune"
   },
   "build": {
     "appId": "electroneasystart",
@@ -36,9 +37,23 @@
         "AppImage"
       ]
     },
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
     "win": {
       "target": "squirrel",
-      "icon": "../public/favicon.ico"
+      "icon": "build/icon.ico"
     }
   },
   "author": "Roman Turusov <mr.romatur@gmail.com>",

@@ -26,7 +26,14 @@ class Form extends React.Component<FormProps, {}> {
           elemInside
         );
       });
-      const className = (element.class === 'list') ? 'form__array form__array-list' : 'form__array';
+      let className = '';
+      if (element.class === 'list') {
+        className = 'form__array form__array-list';
+      } else if (element.class === 'products') {
+        className = 'form__array form__array-products';
+      } else {
+        className = 'form__array';
+      }
       const classNameTitle = (element.title) ? 'form__array-title form__array-title--true' : 'form__array-title';
       const arrayReturn = (
         <div className={className}>

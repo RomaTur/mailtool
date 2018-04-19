@@ -1,9 +1,7 @@
 module.exports = (req) => {
   const sendmail = require('sendmail')();
-  console.log(req.body.to);
-  console.log(req.body.subject);
   sendmail({
-      from: 'ГК "ЛАД" <turusovry@lad24.ru>',
+      from: `ГК "ЛАД" <${req.body.from}>`,
       to: req.body.to,
       subject: req.body.subject,
       html: req.body.html,

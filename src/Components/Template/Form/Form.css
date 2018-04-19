@@ -7,7 +7,7 @@
     margin: 10px 0;
     display: flex;
     flex-direction: column;
-    padding: 10px 10px; }
+    padding: 20px 10px; }
     .form__array-list {
       flex-direction: row-reverse;
       align-items: center;
