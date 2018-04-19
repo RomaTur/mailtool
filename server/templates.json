@@ -56,7 +56,11 @@
                   "remove": true,
                   "elements": [
                     {
-                      "type": "empty"
+                      "type": "empty",
+                      "name": "Добавить",
+                      "key": "addProduct",
+                      "target": "products",
+                      "action": "add"
                     },
                     {
                       "type": "select",

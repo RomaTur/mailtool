@@ -215,6 +215,7 @@ class Template extends React.Component<TemplateProps, TemplateState> {
         let elemInside: any;
         elemInside = this.reverse(elem, key, value, arr) || null;
         if (elem.key === arr) {
+          console.log(elem);
           elem.elements.forEach((elele: any) => {
             for (const param in elele) {
               if (elele.hasOwnProperty(param)) {
