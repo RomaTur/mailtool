@@ -322,7 +322,6 @@ class Template extends React.Component<TemplateProps, TemplateState> {
   }
 
   renderHtml(temp: any) {
-    console.log(temp);
     let totalPrice = this.sumPrice(temp.options, 'products');
     const compiledTemplate: string = _.template(temp.templateHtml)({
       options: temp.options,
@@ -464,7 +463,7 @@ class Template extends React.Component<TemplateProps, TemplateState> {
           });
         }
       });
-      let temp = this.state.params;
+      let temp = _.cloneDeep(this.state.params);
       temp.options[4].elements = temp.options[4].elements.splice(0, temp.options[4].elements.length - 1);
       const finalHtml = this.renderHtml(temp);
       this.setState({
