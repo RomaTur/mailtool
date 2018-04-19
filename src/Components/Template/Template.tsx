@@ -65,8 +65,24 @@ class Template extends React.Component<TemplateProps, TemplateState> {
     // анимация когда компонент примонтирован
     TweenLite.fromTo(this.templ, 0.4, { x: -10, opacity: '0' }, 
       { x: 0, opacity: '1', delay: 0.2 });
+    const prevBtn = document.querySelector('.template__preview-open');
+    this.movePreview(prevBtn);
   }
 
+  movePreview(sideBarElem: any) {
+    let sideBarOffset = sideBarElem.offsetTop;
+    let sideBarPos = window.getComputedStyle(sideBarElem).position;
+    window.addEventListener('scroll', function () {
+        console.log(sideBarOffset, sideBarPos);
+        let scrollTopDoc = window.scrollY + 100;
+        let moveSideBarVal = scrollTopDoc - sideBarOffset;
+        if (moveSideBarVal >= 0) {
+            sideBarElem.style.position = 'fixed';
+        } else {
+            sideBarElem.style.position = 'static';
+        }
+    });
+  }
   // рекурсия -- Добавление/удаление обьекта в массив
   changeEmpty(element: any, newTarget: any) {
     // если массив, то проходимся рекурсивно по всем элементам
