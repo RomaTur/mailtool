@@ -1137,7 +1137,6 @@ style="color:#FF0000;"><%=options[5].elements[4].value%></span>» и получ�
 
 // импорт только для разработки, необходимо будет подгружать с сервера
 // const templates = require('../../templates.json');
-
 interface TemplatesState {
   templates: any;
 }
@@ -1206,6 +1205,7 @@ class Templates extends React.Component<{}, TemplatesState> {
           desc={this.state.templates[i].description}
           options={this.state.templates[i].options}
           logic={this.state.templates[i].logic}
+          dbUrl={this.state.templates[i].dbUrl}
           templateHtml={tpl}
         />);
     }

@@ -30,12 +30,29 @@ class Select extends React.Component<SelectProps, SelectState> {
 
   render() {
     let selectArr: any = [];
-    this.props.options.elements.forEach((element: any) => {
-      selectArr.push(
-        <option value={element.key}>{element.name}</option>
-      );
-    });
-
+    let object = this.props.options.elements;
+    if (object instanceof Array) {
+      this.props.options.elements.forEach((element: any) => {
+        selectArr.push(
+          <option value={element.key}>{(element.name_new) ? element.name_new : element.name}</option>
+        );
+      });
+    } else {
+    for (const key in object) {
+      if (object.hasOwnProperty(key)) {
+        const element = object[key];
+        let optGroupArr: any = [];
+        element.forEach((e: any) => {
+          optGroupArr.push(
+            <option value={e.code}>{e.name}</option>
+          );
+        });
+        selectArr.push(
+          <optgroup label={key}>{optGroupArr}</optgroup>
+        );
+      }
+    }
+    }
     return (
       <div className='form__select'>
         <span className='form__select-name'>{this.props.options.name}: </span>

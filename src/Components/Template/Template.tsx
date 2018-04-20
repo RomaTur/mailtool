@@ -65,24 +65,40 @@ class Template extends React.Component<TemplateProps, TemplateState> {
     // анимация когда компонент примонтирован
     TweenLite.fromTo(this.templ, 0.4, { x: -10, opacity: '0' }, 
       { x: 0, opacity: '1', delay: 0.2 });
-    const prevBtn = document.querySelector('.template__preview-open');
-    this.movePreview(prevBtn);
+      // this.fetchProducts(); // подгрузка данных с сервака
   }
 
-  movePreview(sideBarElem: any) {
-    let sideBarOffset = sideBarElem.offsetTop;
-    let sideBarPos = window.getComputedStyle(sideBarElem).position;
-    window.addEventListener('scroll', function () {
-        console.log(sideBarOffset, sideBarPos);
-        let scrollTopDoc = window.scrollY + 100;
-        let moveSideBarVal = scrollTopDoc - sideBarOffset;
-        if (moveSideBarVal >= 0) {
-            sideBarElem.style.position = 'fixed';
-        } else {
-            sideBarElem.style.position = 'static';
-        }
+  fetchProducts() {
+    let products = fetch(this.state.params.dbUrl.hostname + this.state.params.dbUrl.products)
+    .then((response: any) => {
+      return response.json();
+    }).then((data: any) => {
+      this.changeProductsData(data);
+      this.forceUpdate();
+      return data;
+    }).catch(() => {
+      swal({
+        title: 'Не подгрузились данные!',
+        icon: 'error',
+        timer: 10000
+      }).then(() => {
+        this.fetchProducts();
+      });
+    });
+    console.log(products);
+  }
+  
+  changeProductsData(products: any) {
+    this.state.params.options.forEach((e: any) => {
+      if (e.name === 'products') {
+        e.elements = products;
+      }
+      if (e.elem === 'products') {
+        e.elements[0].elements[1].elements = products; 
+      }
     });
   }
+
   // рекурсия -- Добавление/удаление обьекта в массив
   changeEmpty(element: any, newTarget: any) {
     // если массив, то проходимся рекурсивно по всем элементам
@@ -230,9 +246,10 @@ class Template extends React.Component<TemplateProps, TemplateState> {
       element.elements.forEach((elem: any) => {
         let elemInside: any;
         elemInside = this.reverse(elem, key, value, arr) || null;
+        console.log(elem);
         if (elem.key === arr) {
-          console.log(elem);
-          elem.elements.forEach((elele: any) => {
+          if (elem.elements instanceof Array) {
+            elem.elements.forEach((elele: any) => {
             for (const param in elele) {
               if (elele.hasOwnProperty(param)) {
                 if (elele.type === 'select' && elele.target) {
@@ -240,49 +257,64 @@ class Template extends React.Component<TemplateProps, TemplateState> {
                 }
               }
             }
-          });
-          elem.elements.forEach((elele: any) => {
-            for (const param in elele) {
-              if (elele.hasOwnProperty(param)) {
-                this.state.params.options[this.state.params.options.length - 1].elements.forEach((e: any) => {
-                  if (e.key === elem.name) {
-                    elem.namerus = e.name;
-                    elem.img = e.img;
-                    if (elele.elem === 'productdesc') {
-                      elele.value = e.desc;
-                    }
-                    if (elele.elem === 'img') {
-                      elele.value = e.img;
-                    }
-                    if (elele.elem === 'price') {
-                      elele.value = e.price;
-                    }
-                    if (elele.elem === 'count') {
-                      elele.value = 1;
-                    }
-                    if (elele.elem === 'month') {
-                      elele.value = e.month;
-                      if (elele.value === true) {
-                        elem.month = elem.inMonth;
-                      }
-                    }
-                    if (elele.elem === 'year') {
-                      elele.value = e.year;
-                      if (elele.value === true) {
-                        elem.month = elem.inYear;
-                      }
-                    }
-                    if (elele.elem === 'kvartal') {
-                      elele.value = e.kvartal;
-                      if (elele.value === true) {
-                        elem.month = elem.inKvartal;
-                      }
-                    }
-                  }
-                });
+          });  
+          } else {
+            for (const param in elem) {
+              if (elem.hasOwnProperty(param)) {
+                if (elem.type === 'select' && elem.target) {
+                  // elem.name = elem.value;
+                  console.log(elem);
+                }
               }
             }
-          });
+          }
+          if (elem.elements instanceof Array) {
+            elem.elements.forEach((elele: any) => {
+              for (const param in elele) {
+                if (elele.hasOwnProperty(param)) {
+                  this.state.params.options[this.state.params.options.length - 1].elements.forEach((e: any) => {
+                    if (e.key === elem.name) {
+                      elem.namerus = e.name;
+                      elem.img = e.img;
+                      if (elele.elem === 'productdesc') {
+                        elele.value = e.desc;
+                      }
+                      if (elele.elem === 'img') {
+                        elele.value = e.img;
+                      }
+                      if (elele.elem === 'price') {
+                        elele.value = e.price;
+                      }
+                      if (elele.elem === 'count') {
+                        elele.value = 1;
+                      }
+                      if (elele.elem === 'month') {
+                        elele.value = e.month;
+                        if (elele.value === true) {
+                          elem.month = elem.inMonth;
+                        }
+                      }
+                      if (elele.elem === 'year') {
+                        elele.value = e.year;
+                        if (elele.value === true) {
+                          elem.month = elem.inYear;
+                        }
+                      }
+                      if (elele.elem === 'kvartal') {
+                        elele.value = e.kvartal;
+                        if (elele.value === true) {
+                          elem.month = elem.inKvartal;
+                        }
+                      }
+                    }
+                  });
+                }
+              }
+            });
+          } else {
+            console.log(elem);
+          }
+          
         }
         arrayPush.push(
           elemInside
