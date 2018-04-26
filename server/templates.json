@@ -3,7 +3,7 @@
         {
           "key": "template1",
           "title": "Коммерческое предложение",
-          "description": "Сделать шаблон для для коммерческого предложения",
+          "description": "Заполните все поля и смело отправляйте получателю",
           "dbUrl": {
             "hostname": "https://kkt365.ru",
             "media": "/storage/app/media",

@@ -1155,7 +1155,7 @@ class Templates extends React.Component<{}, TemplatesState> {
 
   fetchTemplates() {
       if (window.location.hostname === 'localhost') {
-        fetch('http://localhost:3004/templates')
+        fetch('http://localhost:4000/templates')
           .then((response: any) => {
             return response.json();
           }).then((data: any) => {
@@ -1163,15 +1163,16 @@ class Templates extends React.Component<{}, TemplatesState> {
               templates: data.templates
             });
             return data;
-          }).catch(() => {
-            swal({
-              title: 'Не подгрузились данные!',
-              icon: 'error',
-              timer: 10000
-            }).then(() => {
-              this.fetchTemplates();
-            });
-          });
+        });
+        //   }).catch(() => {
+        //     swal({
+        //       title: 'Не подгрузились данные!',
+        //       icon: 'error',
+        //       timer: 10000
+        //     }).then(() => {
+        //       this.fetchTemplates();
+        //     });
+        //   });
       } else {
         fetch('/templates')
           .then((response: any) => {

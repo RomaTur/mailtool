@@ -13,13 +13,11 @@ class App extends React.Component {
         <header className='App__header'>
           mailtool
         </header>
-          {
-            // <Route exact path='/' component={Login} />
-          }
+          {/* <Route exact path='/' component={Login} /> */}
           <Route exact path='/' component={Templates} />
           <Route exact path='/template' component={Template} />
         <footer className='App__footer'>
-          Copyright
+          .
         </footer>
       </div>
     );

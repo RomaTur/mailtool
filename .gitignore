@@ -5,6 +5,8 @@
 
 # production
 /dist
+/firefox_root
+test.sh
 
 # misc
 .DS_Store
