@@ -246,7 +246,6 @@ class Template extends React.Component<TemplateProps, TemplateState> {
       element.elements.forEach((elem: any) => {
         let elemInside: any;
         elemInside = this.reverse(elem, key, value, arr) || null;
-        console.log(elem);
         if (elem.key === arr) {
           if (elem.elements instanceof Array) {
             elem.elements.forEach((elele: any) => {

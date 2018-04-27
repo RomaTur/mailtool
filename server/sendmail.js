@@ -7,13 +7,16 @@ let another = `доб. ${req.body.worktel}`;
 ---------------------------------------------------------------
 lad-gk.ru 
    `
-  const sendmail = require('sendmail')();
+  const sendmail = require('sendmail')({
+    smtpPort: 25,
+    smtpHost: 'Service-smtp-lad24-1'
+  });
   sendmail({
       from: `ГК "ЛАД" <${req.body.from}>`,
       to: req.body.to,
       subject: req.body.subject,
       text: textPlain,
-    //  html: req.body.html,
+      html: req.body.html,
     }, function(err, reply) {
       console.log(`\n${err && err.stack}\n`);
       console.dir(`\n${reply}\n`);
