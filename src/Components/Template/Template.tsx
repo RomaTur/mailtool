@@ -11,7 +11,7 @@ const avatarImg = require('./avatar.svg');
 const subjectImg = require('./subject.svg');
 import swal from 'sweetalert';
 import * as _ from 'lodash';
-
+let port = 4000;
 const modalStyles = {
   content : {
     top                   : '50%',
@@ -387,10 +387,10 @@ class Template extends React.Component<TemplateProps, TemplateState> {
       }
       if (element.key === 'author') {
         element.elements.forEach((e: any) => {
-          if (e.key === 'authorEmail') {
+          if (e.key === 'authorEmail' || e.key === 'authorTelWork') {
             this.setState({
               inputs: Object.assign(this.state.inputs, {
-                  [ e.key ]: e.value || 'email@email.net'
+                  [ e.key ]: e.value || 'author'
               })
             });
           }
@@ -449,7 +449,7 @@ class Template extends React.Component<TemplateProps, TemplateState> {
     e.preventDefault();
     let url = '';
     if (window.location.hostname === 'localhost') {
-      url = 'http://localhost:3004';
+      url = `http://localhost:${port}`;
     }
     let isFilledInputs = true;
     this.state.params.options.forEach((element: any) => {
@@ -481,16 +481,16 @@ class Template extends React.Component<TemplateProps, TemplateState> {
           });
         }
         if (element.key === 'author') {
-          console.log(element);
           element.elements.forEach((e: any) => {
-            console.log(e);
-            if (e.key === 'authorEmail') {
-              console.log(e);
+            if (e.key === 'authorEmail' || e.key === 'authorTelWork') {
               this.setState({
                 inputs: Object.assign(this.state.inputs, {
-                    [ element.key ]: element.value || 'email@email.net'
+                    [ e.key ]: e.value || 'author'
                 })
               });
+            }
+            if (e.key === 'authorTel') {
+              e.value = e.value || '88007758525';
             }
           });
         }
@@ -505,6 +505,7 @@ class Template extends React.Component<TemplateProps, TemplateState> {
         to: this.state.inputs.email,
         subject: this.state.inputs.subject,
         from: this.state.inputs.authorEmail,
+        worktel: this.state.inputs.worktel,
         html: finalHtml
       };
       fetch(`${url}/maildata`,

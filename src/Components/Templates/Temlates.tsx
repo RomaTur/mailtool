@@ -6,8 +6,7 @@ import swal from 'sweetalert';
 import TemplatePreview from './TemplatePreview/TemplatePreview';
 // const arrow = require('./arrow.svg');
 
-const tpl = `
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+const tpl = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 
@@ -1140,7 +1139,7 @@ style="color:#FF0000;"><%=options[5].elements[4].value%></span>» и получ�
 interface TemplatesState {
   templates: any;
 }
-
+let port = 4000;
 class Templates extends React.Component<{}, TemplatesState> {
   constructor(props: Object) {
     super(props);
@@ -1155,7 +1154,7 @@ class Templates extends React.Component<{}, TemplatesState> {
 
   fetchTemplates() {
       if (window.location.hostname === 'localhost') {
-        fetch('http://localhost:4000/templates')
+        fetch(`http://localhost:${port}/templates`)
           .then((response: any) => {
             return response.json();
           }).then((data: any) => {
