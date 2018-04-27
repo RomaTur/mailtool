@@ -505,9 +505,10 @@ class Template extends React.Component<TemplateProps, TemplateState> {
         to: this.state.inputs.email,
         subject: this.state.inputs.subject,
         from: this.state.inputs.authorEmail,
-        worktel: this.state.inputs.worktel,
+        worktel: this.state.inputs.authorTelWork,
         html: finalHtml
       };
+      console.log(sendingObj);
       fetch(`${url}/maildata`,
       {
           method: 'POST',
